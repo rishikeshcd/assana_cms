@@ -1,0 +1,40 @@
+import React from 'react';
+
+/**
+ * EditableSection - Wrapper that adds a Save button to any section
+ */
+const EditableSection = ({ 
+  children, 
+  onSave, 
+  saving = false,
+  sectionName = 'Section'
+}) => {
+  return (
+    <div className="relative group">
+      {children}
+      
+      {/* Save Button - Always visible in top-right of each section */}
+      <div className="absolute top-4 right-4 z-[9999]">
+        <button
+          onClick={onSave}
+          disabled={saving}
+          className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg shadow-2xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-lg"
+        >
+          {saving ? (
+            <>
+              <span className="animate-spin">⏳</span>
+              <span>Saving...</span>
+            </>
+          ) : (
+            <>
+              <span>💾</span>
+              <span>Save {sectionName}</span>
+            </>
+          )}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default EditableSection;
