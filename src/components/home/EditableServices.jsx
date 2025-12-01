@@ -1,5 +1,5 @@
 import React from 'react';
-import EditableText from './EditableText';
+import EditableText from '../common/EditableText';
 
 /**
  * EditableServices - CMS version with all accordion items expanded for easy editing

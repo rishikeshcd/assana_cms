@@ -1,5 +1,5 @@
 import React from 'react';
-import EditableText from './EditableText';
+import EditableText from '../common/EditableText';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { Link } from 'react-router-dom';
 

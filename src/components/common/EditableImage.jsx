@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { uploadImage } from '../services/api';
+import { uploadImage } from '../../services/api';
 
 /**
  * EditableImage - Component for editing background images or regular images
@@ -68,7 +68,8 @@ const EditableImage = ({
       className={`relative ${className} ${isBackground ? '' : ''}`}
       style={isBackground ? { width: '100%', height: '100%', pointerEvents: 'auto' } : {}}
     >
-      {!isBackground && previewUrl && (
+      {/* Only render image if no children provided and not background */}
+      {!isBackground && previewUrl && !children && (
         <img
           src={previewUrl}
           alt={alt}
@@ -76,12 +77,13 @@ const EditableImage = ({
         />
       )}
       
+      {/* Render children if provided */}
       {children}
 
       {/* Edit overlay button - Always visible for background images, hover for regular images */}
       <div
         onClick={handleImageClick}
-        className={`absolute top-4 left-4 bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-600 transition-colors z-50 flex items-center gap-2 shadow-lg pointer-events-auto ${
+        className={`absolute bottom-0 right-0 bg-blue-500 text-white px-2 py-1 rounded-lg cursor-pointer hover:bg-blue-600 transition-colors z-50 flex items-center gap-2 shadow-lg pointer-events-auto text-xs ${
           isBackground ? 'opacity-90 hover:opacity-100' : 'opacity-0 group-hover:opacity-100'
         }`}
       >
@@ -92,7 +94,7 @@ const EditableImage = ({
           </>
         ) : (
           <>
-            <span>📷</span>
+            <span className="text-sm">📷</span>
             <span>{isBackground ? 'Change Background' : 'Change Image'}</span>
           </>
         )}

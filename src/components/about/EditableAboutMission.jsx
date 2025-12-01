@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
-import EditableText from './EditableText';
+import EditableText from '../common/EditableText';
 
 /**
  * EditableAboutMission - CMS wrapper for AboutMission component with editing capabilities

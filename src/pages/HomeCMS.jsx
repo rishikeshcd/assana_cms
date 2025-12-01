@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { getSection, updateSection } from '../services/api';
-import EditableSection from '../components/EditableSection';
+import EditableSection from '../components/common/EditableSection';
 
 // Import actual components from public site - they will be modified to accept data props
 // For now, we use editable wrappers that match the exact structure
-import EditableBanner from '../components/EditableBanner';
-import EditableDropdownMenu from '../components/EditableDropdownMenu';
-import EditableWhyAssana from '../components/EditableWhyAssana';
-import EditableServices from '../components/EditableServices';
-import EditableHomeYoutube from '../components/EditableHomeYoutube';
-import EditableTryDemo from '../components/EditableTryDemo';
-import EditableFrequentlyQA from '../components/EditableFrequentlyQA';
-import EditablePatientSays from '../components/EditablePatientSays';
+import EditableBanner from '../components/home/EditableBanner';
+import EditableDropdownMenu from '../components/home/EditableDropdownMenu';
+import EditableWhyAssana from '../components/home/EditableWhyAssana';
+import EditableServices from '../components/home/EditableServices';
+import EditableHomeYoutube from '../components/home/EditableHomeYoutube';
+import EditableTryDemo from '../components/home/EditableTryDemo';
+import EditableFrequentlyQA from '../components/home/EditableFrequentlyQA';
+import EditablePatientSays from '../components/home/EditablePatientSays';
 
 /**
  * HomeCMS - CMS version that reuses the same component structure

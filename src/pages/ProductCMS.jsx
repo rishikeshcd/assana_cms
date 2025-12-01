@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getSection, updateSection } from '../services/api';
 import EditableSection from '../components/common/EditableSection';
-import EditableAnalFistulaHero from '../components/anal_fistula/EditableAnalFistulaHero';
-import EditableAnalFistulaMain from '../components/anal_fistula/EditableAnalFistulaMain';
+import EditableProductHero from '../components/product/EditableProductHero';
+import EditableProductMain from '../components/product/EditableProductMain';
 
 /**
- * AnalFistulaCMS - CMS version for Anal Fistula page sections
+ * ProductCMS - CMS version for Product page sections
  */
-const AnalFistulaCMS = () => {
+const ProductCMS = () => {
   const [sections, setSections] = useState({
     hero: null,
     main: null,
@@ -24,8 +24,8 @@ const AnalFistulaCMS = () => {
   const loadAllSections = async () => {
     try {
       const results = await Promise.allSettled([
-        getSection('anal-fistula', 'hero'),
-        getSection('anal-fistula', 'main'),
+        getSection('product', 'hero'),
+        getSection('product', 'main'),
       ]);
 
       const [hero, main] = results.map((result) => {
@@ -47,18 +47,39 @@ const AnalFistulaCMS = () => {
         hero:
           hero || {
             backgroundImage: '',
-            title: 'Anal Fistula',
-            description: '',
+            title: 'Find the Right Supplements for Your Lifestyle',
+            description: 'Explore a curated range of wellness products designed to boost energy, immunity, and overall health.',
             buttonText: 'Book a Consultation',
           },
         main:
           main || {
-            sections: [],
-            conclusion: {
-              title: 'Conclusion',
-              description: '',
-              buttonText: 'Book a Consultation',
-            },
+            title: 'Discover Your Nutrition Essentials',
+            products: [
+              {
+                label: 'Product 1',
+                title: 'Probiotic Daily Capsules',
+                description: 'A powerful blend of beneficial bacteria strains that help restore gut flora balance. Promotes healthy digestion, supports immune function, and reduces occasional bloating. Perfect for daily use to maintain overall gut wellness.',
+                price: '$29.99',
+                image: '',
+                imageAlt: 'Probiotic Daily Capsules',
+              },
+              {
+                label: 'Product 2',
+                title: 'Digestive Enzyme Complex',
+                description: 'Contains a carefully formulated mix of enzymes to break down proteins, fats, and carbohydrates efficiently. Helps reduce indigestion, gas, and bloating while improving nutrient absorption for better energy levels.',
+                price: '$29.99',
+                image: '',
+                imageAlt: 'Digestive Enzyme Complex',
+              },
+              {
+                label: 'Product 3',
+                title: 'Prebiotic Fiber Powder',
+                description: 'A high-quality prebiotic fiber that nourishes beneficial gut bacteria, supporting a healthy digestive system. Helps regulate bowel movements, reduce bloating, and promote long-term gut health. Can be mixed easily into smoothies or water.',
+                price: '$29.99',
+                image: '',
+                imageAlt: 'Prebiotic Fiber Powder',
+              },
+            ],
           },
       });
 
@@ -79,7 +100,7 @@ const AnalFistulaCMS = () => {
       };
 
       const dataToSave = localData[sectionKey];
-      const updated = await updateSection('anal-fistula', routeMap[sectionKey], dataToSave);
+      const updated = await updateSection('product', routeMap[sectionKey], dataToSave);
 
       setSections({ ...sections, [sectionKey]: updated });
       setLocalData({ ...localData, [sectionKey]: { ...updated } });
@@ -117,26 +138,34 @@ const AnalFistulaCMS = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen">
-      {/* Anal Fistula Hero Section */}
+      {/* Product Hero Section */}
       <EditableSection
         onSave={() => handleSave('hero')}
         saving={saving.hero}
-        sectionName="Anal Fistula Hero"
+        sectionName="Product Hero"
       >
-        <EditableAnalFistulaHero
-          data={localData.hero || { backgroundImage: '', title: 'Anal Fistula', description: '', buttonText: 'Book a Consultation' }}
+        <EditableProductHero
+          data={localData.hero || { 
+            backgroundImage: '', 
+            title: 'Find the Right Supplements for Your Lifestyle', 
+            description: 'Explore a curated range of wellness products designed to boost energy, immunity, and overall health.',
+            buttonText: 'Book a Consultation' 
+          }}
           onDataChange={(newData) => updateLocalData('hero', newData)}
         />
       </EditableSection>
 
-      {/* Anal Fistula Main Section */}
+      {/* Product Main Section */}
       <EditableSection
         onSave={() => handleSave('main')}
         saving={saving.main}
-        sectionName="Anal Fistula Main Content"
+        sectionName="Product Main Content"
       >
-        <EditableAnalFistulaMain
-          data={localData.main || { sections: [], conclusion: { title: 'Conclusion', description: '', buttonText: 'Book a Consultation' } }}
+        <EditableProductMain
+          data={localData.main || {
+            title: 'Discover Your Nutrition Essentials',
+            products: [],
+          }}
           onDataChange={(newData) => updateLocalData('main', newData)}
         />
       </EditableSection>
@@ -144,5 +173,5 @@ const AnalFistulaCMS = () => {
   );
 };
 
-export default AnalFistulaCMS;
+export default ProductCMS;
 

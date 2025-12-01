@@ -1,6 +1,6 @@
 import React from 'react';
-import EditableText from './EditableText';
-import EditableArrayOfObjects from './EditableArrayOfObjects';
+import EditableText from '../common/EditableText';
+import EditableArrayOfObjects from '../common/EditableArrayOfObjects';
 
 /**
  * EditableFrequentlyQA - CMS version with all accordion items expanded for easy editing

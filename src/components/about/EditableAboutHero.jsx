@@ -1,6 +1,6 @@
 import React from 'react';
-import EditableText from './EditableText';
-import EditableImage from './EditableImage';
+import EditableText from '../common/EditableText';
+import EditableImage from '../common/EditableImage';
 
 /**
  * EditableAboutHero - CMS wrapper for AboutHero component with editing capabilities

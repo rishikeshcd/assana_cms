@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getSection, updateSection } from '../services/api';
 import EditableSection from '../components/common/EditableSection';
-import EditableAnalFistulaHero from '../components/anal_fistula/EditableAnalFistulaHero';
-import EditableAnalFistulaMain from '../components/anal_fistula/EditableAnalFistulaMain';
+import EditablePelvicFloorHero from '../components/pelvic_floor/EditablePelvicFloorHero';
+import EditablePelvicFloorMain from '../components/pelvic_floor/EditablePelvicFloorMain';
 
 /**
- * AnalFistulaCMS - CMS version for Anal Fistula page sections
+ * PelvicFloorCMS - CMS version for Pelvic Floor page sections
  */
-const AnalFistulaCMS = () => {
+const PelvicFloorCMS = () => {
   const [sections, setSections] = useState({
     hero: null,
     main: null,
@@ -24,8 +24,8 @@ const AnalFistulaCMS = () => {
   const loadAllSections = async () => {
     try {
       const results = await Promise.allSettled([
-        getSection('anal-fistula', 'hero'),
-        getSection('anal-fistula', 'main'),
+        getSection('pelvic-floor', 'hero'),
+        getSection('pelvic-floor', 'main'),
       ]);
 
       const [hero, main] = results.map((result) => {
@@ -47,18 +47,13 @@ const AnalFistulaCMS = () => {
         hero:
           hero || {
             backgroundImage: '',
-            title: 'Anal Fistula',
+            title: 'Pelvic Floor Problems',
             description: '',
-            buttonText: 'Book a Consultation',
+            buttonText: 'Book Consultation',
           },
         main:
           main || {
             sections: [],
-            conclusion: {
-              title: 'Conclusion',
-              description: '',
-              buttonText: 'Book a Consultation',
-            },
           },
       });
 
@@ -79,7 +74,7 @@ const AnalFistulaCMS = () => {
       };
 
       const dataToSave = localData[sectionKey];
-      const updated = await updateSection('anal-fistula', routeMap[sectionKey], dataToSave);
+      const updated = await updateSection('pelvic-floor', routeMap[sectionKey], dataToSave);
 
       setSections({ ...sections, [sectionKey]: updated });
       setLocalData({ ...localData, [sectionKey]: { ...updated } });
@@ -117,26 +112,26 @@ const AnalFistulaCMS = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen">
-      {/* Anal Fistula Hero Section */}
+      {/* Pelvic Floor Hero Section */}
       <EditableSection
         onSave={() => handleSave('hero')}
         saving={saving.hero}
-        sectionName="Anal Fistula Hero"
+        sectionName="Pelvic Floor Hero"
       >
-        <EditableAnalFistulaHero
-          data={localData.hero || { backgroundImage: '', title: 'Anal Fistula', description: '', buttonText: 'Book a Consultation' }}
+        <EditablePelvicFloorHero
+          data={localData.hero || { backgroundImage: '', title: 'Pelvic Floor Problems', description: '', buttonText: 'Book Consultation' }}
           onDataChange={(newData) => updateLocalData('hero', newData)}
         />
       </EditableSection>
 
-      {/* Anal Fistula Main Section */}
+      {/* Pelvic Floor Main Section */}
       <EditableSection
         onSave={() => handleSave('main')}
         saving={saving.main}
-        sectionName="Anal Fistula Main Content"
+        sectionName="Pelvic Floor Main Content"
       >
-        <EditableAnalFistulaMain
-          data={localData.main || { sections: [], conclusion: { title: 'Conclusion', description: '', buttonText: 'Book a Consultation' } }}
+        <EditablePelvicFloorMain
+          data={localData.main || { sections: [] }}
           onDataChange={(newData) => updateLocalData('main', newData)}
         />
       </EditableSection>
@@ -144,5 +139,6 @@ const AnalFistulaCMS = () => {
   );
 };
 
-export default AnalFistulaCMS;
+export default PelvicFloorCMS;
+
 

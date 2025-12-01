@@ -1,7 +1,7 @@
 import React from 'react';
-import EditableText from './EditableText';
-import EditableImage from './EditableImage';
-import EditableList from './EditableList';
+import EditableText from '../common/EditableText';
+import EditableImage from '../common/EditableImage';
+import EditableList from '../common/EditableList';
 
 /**
  * EditableDropdownMenu - Wrapper with editing capabilities

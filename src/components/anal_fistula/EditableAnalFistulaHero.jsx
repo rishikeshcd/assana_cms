@@ -1,6 +1,6 @@
 import React from 'react';
-import EditableText from './EditableText';
-import EditableImage from './EditableImage';
+import EditableText from '../common/EditableText';
+import EditableImage from '../common/EditableImage';
 import { Link } from 'react-router-dom';
 
 /**

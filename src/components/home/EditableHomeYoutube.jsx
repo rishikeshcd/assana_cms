@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import EditableText from './EditableText';
+import EditableText from '../common/EditableText';
 import { HiMiniPlay } from "react-icons/hi2";
 
 /**

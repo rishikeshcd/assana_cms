@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getSection, updateSection } from '../services/api';
-import EditableSection from '../components/EditableSection';
-import EditableAboutHero from '../components/EditableAboutHero';
-import EditableAboutWhyChoose from '../components/EditableAboutWhyChoose';
-import EditableAboutMissionVision from '../components/EditableAboutMissionVision';
-import EditableAboutTeam from '../components/EditableAboutTeam';
+import EditableSection from '../components/common/EditableSection';
+import EditableAboutHero from '../components/about/EditableAboutHero';
+import EditableAboutWhyChoose from '../components/about/EditableAboutWhyChoose';
+import EditableAboutMissionVision from '../components/about/EditableAboutMissionVision';
+import EditableAboutTeam from '../components/about/EditableAboutTeam';
 
 /**
  * AboutCMS - CMS version for About page sections

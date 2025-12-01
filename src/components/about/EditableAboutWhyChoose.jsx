@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EditableText from './EditableText';
+import EditableText from '../common/EditableText';
 
 /**
  * EditableAboutWhyChoose - CMS wrapper for AboutWhyChoose component

@@ -11,9 +11,11 @@ const CMSNavbar = () => {
     { path: '/home', label: 'Home', icon: '🏠' },
     { path: '/about', label: 'About', icon: '📄' },
     { path: '/anal-fistula', label: 'Anal Fistula', icon: '🏥' },
+    { path: '/pelvic-floor', label: 'Pelvic Floor', icon: '🩺' },
+    { path: '/piles', label: 'Piles', icon: '📋' },
+    { path: '/product', label: 'Product', icon: '🛍️' },
+    { path: '/common', label: 'Common', icon: '🔗' },
     // Add more pages here as they are created
-    // { path: '/services', label: 'Services', icon: '🔧' },
-    // { path: '/contact', label: 'Contact', icon: '📧' },
   ];
 
   const isActive = (path) => {

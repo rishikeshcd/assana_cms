@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { getSection, updateSection } from '../services/api';
 import EditableSection from '../components/common/EditableSection';
-import EditableAnalFistulaHero from '../components/anal_fistula/EditableAnalFistulaHero';
-import EditableAnalFistulaMain from '../components/anal_fistula/EditableAnalFistulaMain';
+import EditablePilesHero from '../components/piles/EditablePilesHero';
+import EditablePilesContent from '../components/piles/EditablePilesContent';
 
 /**
- * AnalFistulaCMS - CMS version for Anal Fistula page sections
+ * PilesCMS - CMS version for Piles page sections
  */
-const AnalFistulaCMS = () => {
+const PilesCMS = () => {
   const [sections, setSections] = useState({
     hero: null,
-    main: null,
+    content: null,
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState({});
@@ -24,11 +24,11 @@ const AnalFistulaCMS = () => {
   const loadAllSections = async () => {
     try {
       const results = await Promise.allSettled([
-        getSection('anal-fistula', 'hero'),
-        getSection('anal-fistula', 'main'),
+        getSection('piles', 'hero'),
+        getSection('piles', 'content'),
       ]);
 
-      const [hero, main] = results.map((result) => {
+      const [hero, content] = results.map((result) => {
         if (result.status === 'fulfilled') {
           return result.value;
         } else {
@@ -39,7 +39,7 @@ const AnalFistulaCMS = () => {
 
       setSections({
         hero: hero || null,
-        main: main || null,
+        content: content || null,
       });
 
       // Initialize local editing data with defaults
@@ -47,18 +47,19 @@ const AnalFistulaCMS = () => {
         hero:
           hero || {
             backgroundImage: '',
-            title: 'Anal Fistula',
+            title: 'Banding of Piles or Haemorrhoids',
             description: '',
             buttonText: 'Book a Consultation',
           },
-        main:
-          main || {
-            sections: [],
-            conclusion: {
-              title: 'Conclusion',
-              description: '',
-              buttonText: 'Book a Consultation',
-            },
+        content:
+          content || {
+            mainTitle: 'All you need to know..',
+            leftTopSection: { title: '', description: '' },
+            leftBottomSection: { title: '', description: '' },
+            centerImage: '',
+            centerImageAlt: '',
+            rightTopSection: { title: '', description: '' },
+            rightBottomSection: { title: '', description: '' },
           },
       });
 
@@ -75,11 +76,11 @@ const AnalFistulaCMS = () => {
     try {
       const routeMap = {
         hero: 'hero',
-        main: 'main',
+        content: 'content',
       };
 
       const dataToSave = localData[sectionKey];
-      const updated = await updateSection('anal-fistula', routeMap[sectionKey], dataToSave);
+      const updated = await updateSection('piles', routeMap[sectionKey], dataToSave);
 
       setSections({ ...sections, [sectionKey]: updated });
       setLocalData({ ...localData, [sectionKey]: { ...updated } });
@@ -117,32 +118,32 @@ const AnalFistulaCMS = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen">
-      {/* Anal Fistula Hero Section */}
+      {/* Piles Hero Section */}
       <EditableSection
         onSave={() => handleSave('hero')}
         saving={saving.hero}
-        sectionName="Anal Fistula Hero"
+        sectionName="Piles Hero"
       >
-        <EditableAnalFistulaHero
-          data={localData.hero || { backgroundImage: '', title: 'Anal Fistula', description: '', buttonText: 'Book a Consultation' }}
+        <EditablePilesHero
+          data={localData.hero || { backgroundImage: '', title: 'Banding of Piles or Haemorrhoids', description: '', buttonText: 'Book a Consultation' }}
           onDataChange={(newData) => updateLocalData('hero', newData)}
         />
       </EditableSection>
 
-      {/* Anal Fistula Main Section */}
+      {/* Piles Content Section */}
       <EditableSection
-        onSave={() => handleSave('main')}
-        saving={saving.main}
-        sectionName="Anal Fistula Main Content"
+        onSave={() => handleSave('content')}
+        saving={saving.content}
+        sectionName="Piles Content"
       >
-        <EditableAnalFistulaMain
-          data={localData.main || { sections: [], conclusion: { title: 'Conclusion', description: '', buttonText: 'Book a Consultation' } }}
-          onDataChange={(newData) => updateLocalData('main', newData)}
+        <EditablePilesContent
+          data={localData.content || { mainTitle: 'All you need to know..', leftTopSection: { title: '', description: '' }, leftBottomSection: { title: '', description: '' }, centerImage: '', centerImageAlt: '', rightTopSection: { title: '', description: '' }, rightBottomSection: { title: '', description: '' } }}
+          onDataChange={(newData) => updateLocalData('content', newData)}
         />
       </EditableSection>
     </div>
   );
 };
 
-export default AnalFistulaCMS;
+export default PilesCMS;
 

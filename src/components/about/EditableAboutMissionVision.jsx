@@ -1,5 +1,5 @@
 import React from 'react';
-import EditableText from './EditableText';
+import EditableText from '../common/EditableText';
 
 /**
  * EditableAboutMissionVision - CMS wrapper for AboutMissionVision component
