@@ -79,7 +79,12 @@ const EditableTryDemo = ({ data, onDataChange }) => {
               className="bg-[#EC7979] text-white text-sm sm:text-base md:text-lg p-3 sm:p-4 rounded-full px-6 sm:px-8 font-semibold hover:bg-[#d86565] transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               <BsStars className='w-5 h-5' />
-              Start Free Symptom Check
+              <EditableText
+                value={data?.button1Text || 'chat with our AI assistant'}
+                onChange={(value) => updateField('button1Text', value)}
+                tag="span"
+                className="inline"
+              />
             </button>
 
             <Link 
@@ -87,7 +92,12 @@ const EditableTryDemo = ({ data, onDataChange }) => {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               <button className="bg-[#EC7979] text-white text-sm sm:text-base md:text-lg p-3 sm:p-4 rounded-full px-6 sm:px-8 font-semibold hover:bg-[#d86565] transition-colors w-full sm:w-auto">
-                Get Started
+                <EditableText
+                  value={data?.button2Text || 'Get Started'}
+                  onChange={(value) => updateField('button2Text', value)}
+                  tag="span"
+                  className="inline"
+                />
               </button>
             </Link>
           </div>

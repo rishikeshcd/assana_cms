@@ -94,7 +94,7 @@ const HomeCMS = () => {
         video: video || { Heading: '', subHeading: '', videoLink: '' },
         patientFeedback: patientFeedback || { componentHeading: '', componentSubHeading: '', testimonials: [] },
         askedQuestions: askedQuestions || { componentHeading: '', faqs: [] },
-        getStarted: getStarted || { Heading: '', subHeading: '', backgroundImage: '' },
+        getStarted: getStarted || { Heading: '', subHeading: '', backgroundImage: '', button1Text: 'Start Free Symptom Check', button2Text: 'Get Started' },
       });
 
       setLoading(false);
