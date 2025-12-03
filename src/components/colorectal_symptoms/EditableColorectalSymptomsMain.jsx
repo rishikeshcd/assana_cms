@@ -3,9 +3,9 @@ import EditableText from '../common/EditableText';
 import EditableImage from '../common/EditableImage';
 
 /**
- * EditablePelvicFloorMain - CMS wrapper for PelvicFloorMain component
+ * EditableColorectalSymptomsMain - CMS wrapper for ColorectalSymptomsMain component
  */
-const EditablePelvicFloorMain = ({ data, onDataChange }) => {
+const EditableColorectalSymptomsMain = ({ data, onDataChange, onSave }) => {
   const safeData = data || {
     sections: [],
   };
@@ -52,17 +52,24 @@ const EditablePelvicFloorMain = ({ data, onDataChange }) => {
       imageTitle: '',
       whatIsItHeading: 'What is it?',
       whatIsIt: '',
-      howCanHelpHeading: 'How Azura Can Help',
+      howCanHelpHeading: 'Symptoms',
       howCanHelp: '',
-      symptomsHeading: 'Symptoms',
+      symptomsHeading: 'How Azura Can Help?',
       symptoms: [],
     };
     onDataChange({ ...safeData, sections: [...sections, newSection] });
   };
 
-  const removeSection = (index) => {
-    const updated = sections.filter((_, i) => i !== index);
-    onDataChange({ ...safeData, sections: updated });
+  const removeSection = async (index) => {
+    const currentSections = safeData.sections || [];
+    const updated = currentSections.filter((_, i) => i !== index);
+    const newData = { ...safeData, sections: updated };
+    onDataChange(newData);
+    
+    // Auto-save to database
+    if (onSave) {
+      await onSave(newData);
+    }
   };
 
   return (
@@ -200,7 +207,14 @@ const EditablePelvicFloorMain = ({ data, onDataChange }) => {
               </div>
               <div className="px-6 pb-4">
                 <button
-                  onClick={() => removeSection(index)}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (window.confirm('Are you sure you want to remove this section?')) {
+                      removeSection(index);
+                    }
+                  }}
                   className="text-red-500 hover:text-red-700 text-sm font-medium"
                 >
                   Remove Section
@@ -224,5 +238,5 @@ const EditablePelvicFloorMain = ({ data, onDataChange }) => {
   );
 };
 
-export default EditablePelvicFloorMain;
+export default EditableColorectalSymptomsMain;
 

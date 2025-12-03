@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getSection, updateSection } from '../services/api';
 import EditableSection from '../components/common/EditableSection';
-import EditablePilesHero from '../components/piles/EditablePilesHero';
-import EditablePilesContent from '../components/piles/EditablePilesContent';
+import EditableLaserSurgeryHero from '../components/laser_surgery/EditableLaserSurgeryHero';
+import EditableLaserSurgeryContent from '../components/laser_surgery/EditableLaserSurgeryContent';
 
 /**
- * PilesCMS - CMS version for Piles page sections
+ * LaserSurgeryCMS - CMS version for Laser Surgery page sections
  */
-const PilesCMS = () => {
+const LaserSurgeryCMS = () => {
   const [sections, setSections] = useState({
     hero: null,
     content: null,
@@ -24,8 +24,8 @@ const PilesCMS = () => {
   const loadAllSections = async () => {
     try {
       const results = await Promise.allSettled([
-        getSection('piles', 'hero'),
-        getSection('piles', 'content'),
+        getSection('laser-surgery', 'hero'),
+        getSection('laser-surgery', 'content'),
       ]);
 
       const [hero, content] = results.map((result) => {
@@ -47,7 +47,7 @@ const PilesCMS = () => {
         hero:
           hero || {
             backgroundImage: '',
-            title: 'Banding of Piles or Haemorrhoids',
+            title: 'Laser Surgery For Piles',
             description: '',
             buttonText: 'Book a Consultation',
           },
@@ -80,7 +80,7 @@ const PilesCMS = () => {
       };
 
       const dataToSave = localData[sectionKey];
-      const updated = await updateSection('piles', routeMap[sectionKey], dataToSave);
+      const updated = await updateSection('laser-surgery', routeMap[sectionKey], dataToSave);
 
       setSections({ ...sections, [sectionKey]: updated });
       setLocalData({ ...localData, [sectionKey]: { ...updated } });
@@ -118,25 +118,25 @@ const PilesCMS = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen">
-      {/* Piles Hero Section */}
+      {/* Laser Surgery Hero Section */}
       <EditableSection
         onSave={() => handleSave('hero')}
         saving={saving.hero}
-        sectionName="Piles Hero"
+        sectionName="Laser Surgery Hero"
       >
-        <EditablePilesHero
-          data={localData.hero || { backgroundImage: '', title: 'Banding of Piles or Haemorrhoids', description: '', buttonText: 'Book a Consultation' }}
+        <EditableLaserSurgeryHero
+          data={localData.hero || { backgroundImage: '', title: 'Laser Surgery For Piles', description: '', buttonText: 'Book a Consultation' }}
           onDataChange={(newData) => updateLocalData('hero', newData)}
         />
       </EditableSection>
 
-      {/* Piles Content Section */}
+      {/* Laser Surgery Content Section */}
       <EditableSection
         onSave={() => handleSave('content')}
         saving={saving.content}
-        sectionName="Piles Content"
+        sectionName="Laser Surgery Content"
       >
-        <EditablePilesContent
+        <EditableLaserSurgeryContent
           data={localData.content || { mainTitle: 'All you need to know..', leftTopSection: { title: '', description: '' }, leftBottomSection: { title: '', description: '' }, centerImage: '', centerImageAlt: '', rightTopSection: { title: '', description: '' }, rightBottomSection: { title: '', description: '' } }}
           onDataChange={(newData) => updateLocalData('content', newData)}
         />
@@ -145,5 +145,6 @@ const PilesCMS = () => {
   );
 };
 
-export default PilesCMS;
+export default LaserSurgeryCMS;
+
 

@@ -1,23 +1,16 @@
 import React from 'react';
 import EditableText from '../common/EditableText';
 import EditableImage from '../common/EditableImage';
-import { Link } from 'react-router-dom';
 
 /**
- * EditableAnalFistulaMain - CMS wrapper for AnalFistulaMain component
+ * EditableColonRectalCancerMain - CMS wrapper for ColonRectalCancerMain component
  */
-const EditableAnalFistulaMain = ({ data, onDataChange }) => {
+const EditableColonRectalCancerMain = ({ data, onDataChange, onSave }) => {
   const safeData = data || {
     sections: [],
-    conclusion: {
-      title: 'Conclusion',
-      description: '',
-      buttonText: 'Book a Consultation',
-    },
   };
 
   const sections = safeData.sections || [];
-  const conclusion = safeData.conclusion || {};
 
   const updateSection = (index, field, value) => {
     const updated = [...sections];
@@ -57,21 +50,22 @@ const EditableAnalFistulaMain = ({ data, onDataChange }) => {
       image: '',
       imageAlt: '',
       imageTitle: '',
+      description: '',
       items: [],
     };
     onDataChange({ ...safeData, sections: [...sections, newSection] });
   };
 
-  const removeSection = (index) => {
-    const updated = sections.filter((_, i) => i !== index);
-    onDataChange({ ...safeData, sections: updated });
-  };
-
-  const updateConclusion = (field, value) => {
-    onDataChange({
-      ...safeData,
-      conclusion: { ...conclusion, [field]: value },
-    });
+  const removeSection = async (index) => {
+    const currentSections = safeData.sections || [];
+    const updated = currentSections.filter((_, i) => i !== index);
+    const newData = { ...safeData, sections: updated };
+    onDataChange(newData);
+    
+    // Auto-save to database
+    if (onSave) {
+      await onSave(newData);
+    }
   };
 
   return (
@@ -92,7 +86,7 @@ const EditableAnalFistulaMain = ({ data, onDataChange }) => {
                   {section.image ? (
                     <img
                       src={section.image}
-                      alt={section.imageAlt || ''}
+                      alt={section.imageAlt || section.title || ''}
                       className="rounded-lg object-cover w-full h-full"
                     />
                   ) : (
@@ -122,6 +116,7 @@ const EditableAnalFistulaMain = ({ data, onDataChange }) => {
 
                 {/* Content */}
                 <div className={`${!isImageLeft ? 'lg:order-1' : 'lg:order-2'}`}>
+                  {/* Title */}
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-[Raleway] mb-6 text-black/90">
                     <EditableText
                       value={section.title || ''}
@@ -130,41 +125,65 @@ const EditableAnalFistulaMain = ({ data, onDataChange }) => {
                       placeholder="Section Title"
                     />
                   </h2>
-                  <ul className="space-y-2 md:space-y-3 text-base md:text-lg md:ml-6 font-[Raleway] text-gray-700 leading-relaxed list-none">
-                    {(section.items || []).map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start gap-3">
-                        <span className="text-[#EC7979] font-bold shrink-0 mt-0.5">•</span>
-                        <div className="flex-1 flex items-center gap-2">
-                          <EditableText
-                            value={item}
-                            onChange={(value) => updateSectionItem(index, itemIndex, value)}
-                            tag="span"
-                            placeholder="List item..."
-                          />
-                          <button
-                            onClick={() => removeSectionItem(index, itemIndex)}
-                            className="text-red-500 hover:text-red-700 text-sm px-2"
-                            title="Remove item"
-                          >
-                            ×
-                          </button>
-                        </div>
+
+                  {/* Description */}
+                  <div className="mb-6">
+                    <p className="text-base md:text-lg font-[Raleway] text-gray-700 leading-relaxed">
+                      <EditableText
+                        value={section.description || ''}
+                        onChange={(value) => updateSection(index, 'description', value)}
+                        tag="span"
+                        multiline={true}
+                        placeholder="Enter description..."
+                      />
+                    </p>
+                  </div>
+
+                  {/* List Items */}
+                  <div>
+                    <ul className="space-y-2 md:space-y-3 text-base md:text-lg md:ml-6 font-[Raleway] text-gray-700 leading-relaxed list-none">
+                      {(section.items || []).map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start gap-3">
+                          <span className="text-[#EC7979] font-bold shrink-0 mt-0.5">•</span>
+                          <div className="flex-1 flex items-center gap-2">
+                            <EditableText
+                              value={item}
+                              onChange={(value) => updateSectionItem(index, itemIndex, value)}
+                              tag="span"
+                              placeholder="List item..."
+                            />
+                            <button
+                              onClick={() => removeSectionItem(index, itemIndex)}
+                              className="text-red-500 hover:text-red-700 text-sm px-2"
+                              title="Remove item"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        </li>
+                      ))}
+                      <li>
+                        <button
+                          onClick={() => addSectionItem(index)}
+                          className="text-blue-500 hover:text-blue-700 text-sm font-medium mt-2"
+                        >
+                          + Add Item
+                        </button>
                       </li>
-                    ))}
-                    <li>
-                      <button
-                        onClick={() => addSectionItem(index)}
-                        className="text-blue-500 hover:text-blue-700 text-sm font-medium mt-2"
-                      >
-                        + Add Item
-                      </button>
-                    </li>
-                  </ul>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div className="px-6 pb-4">
                 <button
-                  onClick={() => removeSection(index)}
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (window.confirm('Are you sure you want to remove this section?')) {
+                      removeSection(index);
+                    }
+                  }}
                   className="text-red-500 hover:text-red-700 text-sm font-medium"
                 >
                   Remove Section
@@ -184,40 +203,10 @@ const EditableAnalFistulaMain = ({ data, onDataChange }) => {
           </button>
         </div>
       </div>
-
-      {/* Conclusion Section */}
-      <div className="max-w-[1600px] p-8 md:p-10 m-auto border-2 border-blue-200 rounded-lg">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-[Raleway] mb-4 text-black/90">
-          <EditableText
-            value={conclusion.title || 'Conclusion'}
-            onChange={(value) => updateConclusion('title', value)}
-            tag="span"
-            placeholder="Conclusion"
-          />
-        </h1>
-        <p className="text-base md:text-lg font-[Raleway] mb-4 text-gray-700 leading-relaxed">
-          <EditableText
-            value={conclusion.description || ''}
-            onChange={(value) => updateConclusion('description', value)}
-            tag="span"
-            multiline={true}
-            placeholder="Enter conclusion description..."
-          />
-        </p>
-        <Link to="/contact">
-          <button className="bg-[#EC7979] text-white py-3 px-8 rounded-4xl cursor-pointer hover:bg-[#d86565] transition-colors font-medium text-base md:text-lg font-[Raleway]">
-            <EditableText
-              value={conclusion.buttonText || 'Book a Consultation'}
-              onChange={(value) => updateConclusion('buttonText', value)}
-              tag="span"
-              placeholder="Book a Consultation"
-            />
-          </button>
-        </Link>
-      </div>
     </div>
   );
 };
 
-export default EditableAnalFistulaMain;
+export default EditableColonRectalCancerMain;
+
 

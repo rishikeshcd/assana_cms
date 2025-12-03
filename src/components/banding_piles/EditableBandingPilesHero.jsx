@@ -4,9 +4,9 @@ import EditableImage from '../common/EditableImage';
 import { Link } from 'react-router-dom';
 
 /**
- * EditablePilesHero - CMS wrapper for PilesHero component
+ * EditableBandingPilesHero - CMS wrapper for BandingPilesHero component
  */
-const EditablePilesHero = ({ data, onDataChange }) => {
+const EditableBandingPilesHero = ({ data, onDataChange }) => {
   const safeData = data || {
     backgroundImage: '',
     title: 'Banding of Piles or Haemorrhoids',
@@ -82,5 +82,5 @@ const EditablePilesHero = ({ data, onDataChange }) => {
   );
 };
 
-export default EditablePilesHero;
+export default EditableBandingPilesHero;
 

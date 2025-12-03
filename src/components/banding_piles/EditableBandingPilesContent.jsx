@@ -3,9 +3,9 @@ import EditableText from '../common/EditableText';
 import EditableImage from '../common/EditableImage';
 
 /**
- * EditablePilesContent - CMS wrapper for PilesContent component
+ * EditableBandingPilesContent - CMS wrapper for BandingPilesContent component
  */
-const EditablePilesContent = ({ data, onDataChange }) => {
+const EditableBandingPilesContent = ({ data, onDataChange }) => {
   const safeData = data || {
     mainTitle: 'All you need to know..',
     leftTopSection: { title: '', description: '' },
@@ -34,36 +34,33 @@ const EditablePilesContent = ({ data, onDataChange }) => {
     onDataChange({ ...safeData, centerImage: url });
   };
 
+  const updateCenterImageAlt = (value) => {
+    onDataChange({ ...safeData, centerImageAlt: value });
+  };
+
   // Helper function to render an editable text box section
   const renderEditableTextBox = (sectionKey, index) => {
     const section = safeData[sectionKey] || { title: '', description: '' };
     
-    // Only render if there's content (matching Piles_content.jsx behavior)
-    if (!section.title && !section.description) return null;
-    
     return (
-      <div key={index} className="bg-white p-6 md:p-8 rounded-lg shadow-md mb-6 border-2 border-blue-200">
-        {section.title && (
-          <h3 className="text-xl md:text-2xl font-[Raleway] font-semibold mb-4 text-[#EC7979]">
-            <EditableText
-              value={section.title || ''}
-              onChange={(value) => updateSection(sectionKey, 'title', value)}
-              tag="span"
-              placeholder="Section Title"
-            />
-          </h3>
-        )}
-        {section.description && (
-          <div className="text-base md:text-lg font-[Raleway] text-gray-700 leading-relaxed whitespace-pre-line">
-            <EditableText
-              value={section.description || ''}
-              onChange={(value) => updateSection(sectionKey, 'description', value)}
-              tag="span"
-              multiline={true}
-              placeholder="Enter description..."
-            />
-          </div>
-        )}
+      <div key={index} className="bg-white p-6 md:p-8 rounded-lg shadow-md border-2 border-blue-200">
+        <h3 className="text-xl md:text-2xl font-[Raleway] font-semibold mb-4 text-[#EC7979]">
+          <EditableText
+            value={section.title || ''}
+            onChange={(value) => updateSection(sectionKey, 'title', value)}
+            tag="span"
+            placeholder="Section Title"
+          />
+        </h3>
+        <div className="text-base md:text-lg font-[Raleway] text-gray-700 leading-relaxed whitespace-pre-line">
+          <EditableText
+            value={section.description || ''}
+            onChange={(value) => updateSection(sectionKey, 'description', value)}
+            tag="span"
+            multiline={true}
+            placeholder="Enter description..."
+          />
+        </div>
       </div>
     );
   };
@@ -84,7 +81,7 @@ const EditablePilesContent = ({ data, onDataChange }) => {
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Left Column */}
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-y-6 justify-between">
             {renderEditableTextBox('leftTopSection', 'left-top')}
             {renderEditableTextBox('leftBottomSection', 'left-bottom')}
           </div>
@@ -117,7 +114,7 @@ const EditablePilesContent = ({ data, onDataChange }) => {
             )}
           </div>
           {/* Right Column */}
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-y-6">
             {renderEditableTextBox('rightTopSection', 'right-top')}
             {renderEditableTextBox('rightBottomSection', 'right-bottom')}
           </div>
@@ -127,4 +124,4 @@ const EditablePilesContent = ({ data, onDataChange }) => {
   );
 };
 
-export default EditablePilesContent;
+export default EditableBandingPilesContent;
