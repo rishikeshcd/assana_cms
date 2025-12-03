@@ -11,11 +11,13 @@ const CMSNavbar = () => {
     { path: '/home', label: 'Home', icon: '🏠' },
     { path: '/about', label: 'About', icon: '📄' },
     { path: '/anal-fistula', label: 'Anal Fistula', icon: '🏥' },
+    { path: '/piles', label: 'Piles', icon: '📋' },
     { path: '/pelvic-floor', label: 'Pelvic Floor', icon: '🩺' },
     { path: '/banding-piles', label: 'Banding Piles', icon: '📋' },
     { path: '/colorectal-symptoms', label: 'Colorectal Symptoms', icon: '🔬' },
     { path: '/colon-rectal-cancer', label: 'Colon Rectal Cancer', icon: '🩺' },
     { path: '/laser-surgery', label: 'Laser Surgery', icon: '⚡' },
+    { path: '/anal-wound-care', label: 'Anal Wound Care', icon: '🩹' },
     { path: '/product', label: 'Product', icon: '🛍️' },
     { path: '/common', label: 'Common', icon: '🔗' },
     // Add more pages here as they are created

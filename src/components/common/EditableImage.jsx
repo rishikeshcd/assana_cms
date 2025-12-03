@@ -15,11 +15,23 @@ const EditableImage = ({
 }) => {
   const [uploading, setUploading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(imageUrl);
+  const [localPreviewUrl, setLocalPreviewUrl] = useState(null); // Temporary local preview
   const fileInputRef = useRef(null);
+  const localUrlRef = useRef(null); // To track and cleanup object URLs
 
   useEffect(() => {
     setPreviewUrl(imageUrl);
   }, [imageUrl]);
+
+  // Cleanup local preview URL on unmount or when new image is set
+  useEffect(() => {
+    return () => {
+      if (localUrlRef.current) {
+        URL.revokeObjectURL(localUrlRef.current);
+        localUrlRef.current = null;
+      }
+    };
+  }, []);
 
   const handleImageClick = () => {
     fileInputRef.current?.click();
@@ -41,16 +53,60 @@ const EditableImage = ({
       return;
     }
 
+    // Clean up previous local URL if exists
+    if (localUrlRef.current) {
+      URL.revokeObjectURL(localUrlRef.current);
+    }
+
+    // Create instant local preview
+    const localUrl = URL.createObjectURL(file);
+    localUrlRef.current = localUrl;
+    setLocalPreviewUrl(localUrl);
+    setPreviewUrl(localUrl); // Show preview immediately
+    
+    // Update parent immediately with local preview for instant display
+    if (onChange) {
+      onChange(localUrl); // Temporary local URL - shows instantly
+    }
+
     setUploading(true);
 
     try {
+      // Upload to Cloudinary in the background
       const result = await uploadImage(file);
+      
+      // Clean up local preview URL
+      if (localUrlRef.current) {
+        URL.revokeObjectURL(localUrlRef.current);
+        localUrlRef.current = null;
+      }
+      
+      // Replace with Cloudinary URL
+      setLocalPreviewUrl(null);
       setPreviewUrl(result.url);
+      
+      // Update parent with final Cloudinary URL
       if (onChange) {
         onChange(result.url);
       }
     } catch (error) {
       console.error('Upload error:', error);
+      
+      // Clean up local preview URL on error
+      if (localUrlRef.current) {
+        URL.revokeObjectURL(localUrlRef.current);
+        localUrlRef.current = null;
+      }
+      
+      // Revert to original image on error
+      setLocalPreviewUrl(null);
+      setPreviewUrl(imageUrl);
+      
+      // Revert parent to original URL
+      if (onChange) {
+        onChange(imageUrl);
+      }
+      
       alert('Failed to upload image. Please try again.');
     } finally {
       setUploading(false);
@@ -69,9 +125,9 @@ const EditableImage = ({
       style={isBackground ? { width: '100%', height: '100%', pointerEvents: 'auto' } : {}}
     >
       {/* Only render image if no children provided and not background */}
-      {!isBackground && previewUrl && !children && (
+      {!isBackground && (localPreviewUrl || previewUrl) && !children && (
         <img
-          src={previewUrl}
+          src={localPreviewUrl || previewUrl}
           alt={alt}
           className="w-full h-full object-cover"
         />
