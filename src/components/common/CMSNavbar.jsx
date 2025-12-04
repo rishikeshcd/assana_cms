@@ -11,6 +11,7 @@ const CMSNavbar = () => {
     { path: '/home', label: 'Home', icon: '🏠' },
     { path: '/about', label: 'About', icon: '📄' },
     { path: '/anal-fistula', label: 'Anal Fistula', icon: '🏥' },
+    { path: '/anal-fissure', label: 'Anal Fissure', icon: '🔍' },
     { path: '/piles', label: 'Piles', icon: '📋' },
     { path: '/pelvic-floor', label: 'Pelvic Floor', icon: '🩺' },
     { path: '/banding-piles', label: 'Banding Piles', icon: '📋' },

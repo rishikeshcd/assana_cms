@@ -11,6 +11,7 @@ import ColorectalSymptomsCMS from './pages/ColorectalSymptomsCMS';
 import ColonRectalCancerCMS from './pages/ColonRectalCancerCMS';
 import LaserSurgeryCMS from './pages/LaserSurgeryCMS';
 import AnalWoundCareCMS from './pages/AnalWoundCareCMS';
+import AnalFissureCMS from './pages/AnalFissureCMS';
 import ProductCMS from './pages/ProductCMS';
 import CommonCMS from './pages/CommonCMS';
 
@@ -31,6 +32,7 @@ function App() {
           <Route path="/colon-rectal-cancer" element={<ColonRectalCancerCMS />} />
           <Route path="/laser-surgery" element={<LaserSurgeryCMS />} />
           <Route path="/anal-wound-care" element={<AnalWoundCareCMS />} />
+          <Route path="/anal-fissure" element={<AnalFissureCMS />} />
           <Route path="/product" element={<ProductCMS />} />
           <Route path="/common" element={<CommonCMS />} />
         </Routes>
