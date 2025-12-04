@@ -19,7 +19,7 @@ const EditablePilesHero = ({ data, onDataChange }) => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-start pt-20 lg:pt-24 border-2 border-blue-200 rounded-lg">
+    <section className="relative min-h-screen flex items-center justify-start pt-20 lg:pt-24">
       {/* Background Image */}
       <div className="absolute inset-0">
         {safeData.backgroundImage && (

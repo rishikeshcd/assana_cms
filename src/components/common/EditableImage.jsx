@@ -107,7 +107,17 @@ const EditableImage = ({
         onChange(imageUrl);
       }
       
-      alert('Failed to upload image. Please try again.');
+      // Provide specific error messages
+      let errorMessage = 'Failed to upload image. Please try again.';
+      if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+        errorMessage = 'Upload timeout. The image may be too large or your connection is slow. Please try again with a smaller image or check your internet connection.';
+      } else if (error.response?.data?.error) {
+        errorMessage = `Upload failed: ${error.response.data.error}`;
+      } else if (error.message) {
+        errorMessage = `Upload failed: ${error.message}`;
+      }
+      
+      alert(errorMessage);
     } finally {
       setUploading(false);
       // Reset file input

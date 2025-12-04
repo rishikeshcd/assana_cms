@@ -42,10 +42,10 @@ const EditableLaserSurgeryHero = ({ data, onDataChange }) => {
       </div>
 
       {/* Semi-transparent Overlay with Content */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 lg:px-8">
-        <div className="bg-gray-800/70 backdrop-blur-sm rounded-2xl p-8 lg:p-12 text-center">
+     
+        <div className="relative mx-auto z-10 p-8 lg:p-12 text-center flex flex-col items-center justify-center max-w-[70%] w-fit ">
           {/* Title - White Text */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-[Raleway] mb-6 text-white">
+          <h1 className="text-4xl md:text-5xl lg:w-[90%] lg:text-6xl font-normal font-[Raleway] mb-6  p-6 text-white  bg-gray-400/50 backdrop-blur-sm rounded-lg ">
             <EditableText
               value={safeData.title || ''}
               onChange={(value) => updateField('title', value)}
@@ -55,7 +55,7 @@ const EditableLaserSurgeryHero = ({ data, onDataChange }) => {
           </h1>
 
           {/* Description Paragraph - Red Text */}
-          <p className="text-base md:text-lg lg:text-xl font-[Raleway] mb-8 leading-relaxed text-[#EC7979]">
+          <p className=" md:text-lg lg:text-[30px] font-[Raleway]  mb-8 leading-relaxed text-[#E64C4C]  font-medium w-[90%] m-auto">
             <EditableText
               value={safeData.description || ''}
               onChange={(value) => updateField('description', value)}
@@ -67,7 +67,7 @@ const EditableLaserSurgeryHero = ({ data, onDataChange }) => {
 
           {/* Book Consultation Button */}
           <Link to="/contact">
-            <button className="bg-[#EC7979] text-white py-3 px-8 rounded-3xl cursor-pointer hover:bg-[#d86565] transition-colors font-medium text-base md:text-lg font-[Raleway]">
+            <button className="bg-[#E64C4C] text-white py-3 px-8 rounded-3xl cursor-pointer hover:bg-[#d86565] transition-colors font-medium text-base md:text-lg font-[Raleway]">
               <EditableText
                 value={safeData.buttonText || 'Book a Consultation'}
                 onChange={(value) => updateField('buttonText', value)}
@@ -77,7 +77,7 @@ const EditableLaserSurgeryHero = ({ data, onDataChange }) => {
             </button>
           </Link>
         </div>
-      </div>
+      
     </section>
   );
 };

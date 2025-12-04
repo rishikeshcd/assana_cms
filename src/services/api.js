@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api',
   // baseURL: import.meta.env.VITE_API_BASE_URL || "https://assana-backend-rqkg.onrender.com/api",
   withCredentials: false,
-  timeout: 15000,
+  timeout: 20000,
 });
 
 // Helper functions for CMS
@@ -25,6 +25,13 @@ export const uploadImage = async (file) => {
   const response = await api.post('/uploads', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
+    },
+    timeout: 120000, // 2 minutes timeout for image uploads (larger files need more time)
+    onUploadProgress: (progressEvent) => {
+      if (progressEvent.total) {
+        const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        console.log(`Upload progress: ${percentCompleted}%`);
+      }
     },
   });
   return response.data;

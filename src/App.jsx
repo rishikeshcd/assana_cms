@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CMSNavbar from './components/common/CMSNavbar';
+import ScrollToTop from './components/common/ScrollToTop';
 import HomeCMS from './pages/HomeCMS';
 import AboutCMS from './pages/AboutCMS';
 import AnalFistulaCMS from './pages/AnalFistulaCMS';
@@ -18,6 +19,7 @@ import CommonCMS from './pages/CommonCMS';
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="min-h-screen bg-gray-50">
         <CMSNavbar />
         <Routes>

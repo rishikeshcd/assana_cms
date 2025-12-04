@@ -19,9 +19,9 @@ const EditableColorectalSymptomsHero = ({ data, onDataChange }) => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 lg:pt-24" style={{ backgroundColor: '#0000000D' }}>
-      <div className="w-full max-w-[1600px] mx-auto px-4 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <section className="relative min-h-screen flex items-center pt-20 lg:pt-24 " style={{ backgroundColor: '#0000000D' }}>
+      <div className="w-full max-w-[1600px] mx-auto px-4 lg:px-8 ">
+        <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-8 lg:gap-12 items-center">
           {/* Left Side - Content */}
           <div className="relative z-10">
             {/* Title */}
@@ -35,7 +35,7 @@ const EditableColorectalSymptomsHero = ({ data, onDataChange }) => {
             </h1>
 
             {/* Description Paragraph */}
-            <p className="text-base md:text-lg lg:text-xl font-[Raleway] mb-8 leading-relaxed text-black">
+            <p className="text-base md:text-lg lg:text-xl font-[Raleway] mb-8 leading-loose tracking-wide text-black">
               <EditableText
                 value={safeData.description || ''}
                 onChange={(value) => updateField('description', value)}
@@ -59,12 +59,12 @@ const EditableColorectalSymptomsHero = ({ data, onDataChange }) => {
           </div>
 
           {/* Right Side - Image */}
-          <div className="relative w-full h-[400px] lg:h-[600px]">
+          <div className="relative w-full h-[400px] lg:h-[700px] ">
             {safeData.backgroundImage ? (
               <img
                 src={safeData.backgroundImage}
-                alt="Colorectal Symptoms"
-                className="w-full h-full object-cover rounded-lg"
+                alt="Pelvic Floor Problems"
+                className="w-full h-full object-contain rounded-lg"
               />
             ) : (
               <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">

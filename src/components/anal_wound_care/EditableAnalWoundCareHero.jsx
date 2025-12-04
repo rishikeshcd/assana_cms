@@ -19,15 +19,19 @@ const EditableAnalWoundCareHero = ({ data, onDataChange }) => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-20 lg:pt-24 border-2 border-blue-200 rounded-lg">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 lg:pt-24">
       {/* Background Image */}
-      <div className="absolute inset-0">
-        {safeData.backgroundImage && (
+      <div className="absolute inset-0 w-full h-full">
+        {safeData.backgroundImage ? (
           <img
             src={safeData.backgroundImage}
             alt="Background"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-full object-cover"
           />
+        ) : (
+          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <span className="text-gray-400">No background image</span>
+          </div>
         )}
         <EditableImage
           imageUrl={safeData.backgroundImage}
@@ -45,7 +49,7 @@ const EditableAnalWoundCareHero = ({ data, onDataChange }) => {
             value={safeData.title || 'After Anal Surgery Wound Care'}
             onChange={(value) => updateField('title', value)}
             tag="span"
-            className="block"
+            placeholder="After Anal Surgery Wound Care"
           />
         </h1>
 
@@ -55,7 +59,7 @@ const EditableAnalWoundCareHero = ({ data, onDataChange }) => {
             value={safeData.description || ''}
             onChange={(value) => updateField('description', value)}
             multiline={true}
-            className="block"
+            placeholder="Enter description..."
           />
         </p>
 
@@ -66,7 +70,7 @@ const EditableAnalWoundCareHero = ({ data, onDataChange }) => {
               value={safeData.buttonText || 'Book a Consultation'}
               onChange={(value) => updateField('buttonText', value)}
               tag="span"
-              className="inline"
+              placeholder="Book a Consultation"
             />
           </button>
         </Link>

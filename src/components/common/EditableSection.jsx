@@ -11,10 +11,8 @@ const EditableSection = ({
 }) => {
   return (
     <div className="relative group">
-      {children}
-      
-      {/* Save Button - Always visible in top-right of each section */}
-      <div className="absolute top-4 right-4 z-[9999]">
+      {/* Save Button - Sticky at top-right of viewport */}
+      <div className="sticky top-20 z-[9999] flex justify-end mb-4" style={{ marginTop: '-1rem' }}>
         <button
           onClick={onSave}
           disabled={saving}
@@ -33,6 +31,8 @@ const EditableSection = ({
           )}
         </button>
       </div>
+      
+      {children}
     </div>
   );
 };
