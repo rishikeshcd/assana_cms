@@ -21,6 +21,7 @@ const CMSNavbar = () => {
     { path: '/anal-wound-care', label: 'Anal Wound Care', icon: '🩹' },
     { path: '/product', label: 'Product', icon: '🛍️' },
     { path: '/common', label: 'Common', icon: '🔗' },
+    { path: '/gut-brain-axis', label: 'Gut Brain Axis', icon: '🧠' },
     // Add more pages here as they are created
   ];
 

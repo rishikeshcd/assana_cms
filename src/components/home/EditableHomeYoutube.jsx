@@ -16,41 +16,27 @@ const EditableHomeYoutube = ({ data, onDataChange }) => {
     onDataChange({ ...safeData, [field]: value });
   };
 
+  // Extract Video ID from any YouTube URL
+  const extractVideoId = (url) => {
+    if (!url) return '';
+
+    const pattern =
+      /(?:youtube\.com\/.*v=|youtu\.be\/|youtube\.com\/embed\/)([^"&?/ ]{11})/;
+
+    const match = url.match(pattern);
+    return match ? match[1] : '';
+  };
+
   // Convert YouTube URL to embed format
   const getEmbedUrl = (url) => {
-    if (!url) return '';
-    
-    // If already in embed format, return as is
-    if (url.includes('youtube.com/embed/')) {
-      return url;
+    const id = extractVideoId(url);
+    if (id) {
+      return `https://www.youtube.com/embed/${id}?autoplay=1`;
     }
-    
-    // Extract video ID from various YouTube URL formats
-    let videoId = '';
-    
-    // Format: https://www.youtube.com/watch?v=VIDEO_ID
-    if (url.includes('youtube.com/watch?v=')) {
-      videoId = url.split('watch?v=')[1]?.split('&')[0];
-    }
-    // Format: https://youtu.be/VIDEO_ID
-    else if (url.includes('youtu.be/')) {
-      videoId = url.split('youtu.be/')[1]?.split('?')[0];
-    }
-    // Format: https://www.youtube.com/embed/VIDEO_ID (already embed)
-    else if (url.includes('youtube.com/embed/')) {
-      return url;
-    }
-    // If it's just a video ID
-    else if (url.length === 11 && !url.includes('/') && !url.includes('?')) {
-      videoId = url;
-    }
-    
-    if (videoId) {
-      return `https://www.youtube.com/embed/${videoId}`;
-    }
-    
-    return url; // Return original if can't parse
+    return '';
   };
+
+  const videoId = extractVideoId(safeData?.videoLink);
 
   return (
     <section className='max-w-[1600px] m-auto mb-5 bg-[]'>
@@ -72,21 +58,42 @@ const EditableHomeYoutube = ({ data, onDataChange }) => {
           />
         </p>
 
-        <div className={play ? "w-full mt-10 aspect-video rounded-[12px] shadow-xl overflow-hidden" : "w-full h-130 mt-10 aspect-video rounded-[12px] shadow-xl overflow-hidden"}>
+        <div className="w-full mt-10 aspect-video rounded-[12px] shadow-xl overflow-hidden">
           {!play ? (
+            // Thumbnail + Play Button
             <div
-              className="w-full h-full flex items-end justify-end bg-black cursor-pointer"
+              className="relative w-full h-full cursor-pointer"
               onClick={() => setPlay(true)}
             >
-              <div className='bg-[] h-20 w-20 mb-10 mr-10 flex justify-center items-center rounded-full border-1 border-[white] hover:border-[#1bdd1b] group'> 
-                <HiMiniPlay className="text-5xl lg:text-5xl text-[white] group-hover:text-[#1bdd1b]" />
-              </div>
+              {/* Thumbnail */}
+              {videoId ? (
+                <img
+                  src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                  alt="YouTube Thumbnail"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                  }}
+                />
+              ) : (
+                <div className="w-full h-full bg-black flex items-center justify-center">
+                  <span className="text-white text-sm">Enter a YouTube link to see thumbnail</span>
+                </div>
+              )}
+
+              {/* Play Button (Bottom Right) */}
+              {videoId && (
+                <div className="absolute bottom-10 right-10 h-20 w-20 flex justify-center items-center rounded-full border border-white hover:border-[#1bdd1b] group bg-black/40 backdrop-blur-sm">
+                  <HiMiniPlay className="text-5xl text-white group-hover:text-[#1bdd1b]" />
+                </div>
+              )}
             </div>
           ) : (
+            // YouTube Player
             <iframe
               className="w-full h-full"
               src={getEmbedUrl(safeData?.videoLink)}
-              title="Video"
+              title="YouTube video"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

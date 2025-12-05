@@ -15,6 +15,7 @@ import AnalWoundCareCMS from './pages/AnalWoundCareCMS';
 import AnalFissureCMS from './pages/AnalFissureCMS';
 import ProductCMS from './pages/ProductCMS';
 import CommonCMS from './pages/CommonCMS';
+import GutBrainAxisCMS from './pages/GutBrainAxisCMS';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/anal-fissure" element={<AnalFissureCMS />} />
           <Route path="/product" element={<ProductCMS />} />
           <Route path="/common" element={<CommonCMS />} />
+          <Route path="/gut-brain-axis" element={<GutBrainAxisCMS />} />
         </Routes>
       </div>
     </BrowserRouter>
