@@ -1,7 +1,6 @@
 import React from 'react';
 import EditableText from '../common/EditableText';
 import EditableImage from '../common/EditableImage';
-import { Link } from 'react-router-dom';
 
 /**
  * EditableProductHero - CMS wrapper for ProductHero component
@@ -63,17 +62,15 @@ const EditableProductHero = ({ data, onDataChange }) => {
             />
           </p>
 
-          {/* Book Consultation Button */}
-          <Link to="/contact">
-            <button className="bg-[#E64C4C1A] backdrop-blur-sm text-white py-3 px-8 rounded-3xl cursor-pointer hover:bg-[#E64C4C1A] transition-colors font-medium text-base md:text-lg font-[Raleway]">
-              <EditableText
-                value={safeData.buttonText || 'Book a Consultation'}
-                onChange={(value) => updateField('buttonText', value)}
-                tag="span"
-                placeholder="Book a Consultation"
-              />
-            </button>
-          </Link>
+          {/* Book Consultation Button - Static in CMS */}
+          <div className="bg-[#E64C4C1A] backdrop-blur-sm text-white py-3 px-8 rounded-3xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block">
+            <EditableText
+              value={safeData.buttonText || 'Book a Consultation'}
+              onChange={(value) => updateField('buttonText', value)}
+              tag="span"
+              placeholder="Book a Consultation"
+            />
+          </div>
         </div>
     </section>
   );

@@ -82,7 +82,7 @@ const EditableServices = ({ data, onDataChange }) => {
                         value={item.serviceOpenPara1 || ''}
                         onChange={(value) => updateService(index, 'serviceOpenPara1', value)}
                         multiline={true}
-                        className="text-white text-base sm:text-lg bg-[#F05A5A] p-3 rounded w-full min-h-[100px]"
+                        className="text-white text-base sm:text-lg  p-3 rounded w-full min-h-[100px]"
                       />
                     </div>
 
@@ -94,7 +94,7 @@ const EditableServices = ({ data, onDataChange }) => {
                         value={item.serviceOpenPara2 || ''}
                         onChange={(value) => updateService(index, 'serviceOpenPara2', value)}
                         multiline={true}
-                        className="text-white text-base sm:text-lg bg-[#F05A5A] p-3 rounded w-full min-h-[100px]"
+                        className="text-white text-base sm:text-lg  p-3 rounded w-full min-h-[100px]"
                       />
                     </div>
                   </div>

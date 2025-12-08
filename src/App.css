@@ -1,0 +1,19 @@
+/* Orange Themed Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #fff3e6;       /* light orange track */
+    border-radius: 10px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #E64C4C;       /* main orange */
+    border-radius: 10px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #E64C4CE5;       /* darker orange on hover */
+  }
+  

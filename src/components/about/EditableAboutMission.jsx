@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import EditableText from '../common/EditableText';
 
@@ -51,17 +50,17 @@ const EditableAboutMission = ({ data, onDataChange }) => {
         </div>
         <div className='flex justify-center lg:justify-end'>
           <div className="inline-flex items-center group mt-5">
-            <Link 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
-              to={'/bookNow'}
-            >
-              <button className="bg-[#EC7979] text-sm sm:text-lg p-3 rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 group-hover:pr-8 font-semibold group-hover:text-white transition-all duration-300 ease-in-out group-hover:bg-[#F05A5A] flex items-center">
-                Book a discreet Consultation
-                <IoIosArrowDroprightCircle 
-                  className="opacity-0 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out text-3xl sm:text-4xl ml-3"
-                />
-              </button>
-            </Link>
+            <div className="bg-[#EC7979] text-sm sm:text-lg p-3 rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 font-semibold cursor-default flex items-center">
+              <EditableText
+                value={safeData?.buttonText || 'Book a discreet Consultation'}
+                onChange={(value) => updateField('buttonText', value)}
+                tag="span"
+                className="inline"
+              />
+              <IoIosArrowDroprightCircle 
+                className="text-3xl sm:text-4xl ml-3"
+              />
+            </div>
           </div>
         </div>
       </div>

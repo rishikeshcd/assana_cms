@@ -3,11 +3,15 @@ import EditableText from '../../common/EditableText';
 import EditableImage from '../../common/EditableImage';
 
 /**
- * EditableGutBrainAxisMain - CMS wrapper for GutBrainAxisMain component
+ * EditableColonHydrotherapyMain - CMS wrapper for ColonHydrotherapyMain component
  */
-const EditableGutBrainAxisMain = ({ data, onDataChange, onSave }) => {
+const EditableColonHydrotherapyMain = ({ data, onDataChange, onSave }) => {
   const safeData = data || {
     sections: [],
+    conclusion: {
+      text: '',
+      buttonText: 'Book a Consultation',
+    },
   };
 
   const sections = safeData.sections || [];
@@ -213,4 +217,5 @@ const EditableGutBrainAxisMain = ({ data, onDataChange, onSave }) => {
   );
 };
 
-export default EditableGutBrainAxisMain;
+export default EditableColonHydrotherapyMain;
+

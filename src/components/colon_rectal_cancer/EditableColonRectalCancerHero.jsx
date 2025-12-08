@@ -1,7 +1,6 @@
 import React from 'react';
 import EditableText from '../common/EditableText';
 import EditableImage from '../common/EditableImage';
-import { Link } from 'react-router-dom';
 
 /**
  * EditableColonRectalCancerHero - CMS wrapper for ColonRectalCancerHero component
@@ -64,17 +63,15 @@ const EditableColonRectalCancerHero = ({ data, onDataChange }) => {
           />
         </p>
 
-        {/* Book Consultation Button */}
-        <Link to="/contact">
-          <button className="bg-[#EC7979] text-white py-3 px-8 rounded-3xl cursor-pointer hover:bg-[#d86565] transition-colors font-medium text-base md:text-lg font-[Raleway]">
-            <EditableText
-              value={safeData.buttonText || 'Book Consultation'}
-              onChange={(value) => updateField('buttonText', value)}
-              tag="span"
-              placeholder="Book Consultation"
-            />
-          </button>
-        </Link>
+        {/* Book Consultation Button - Static in CMS */}
+        <div className="bg-[#EC7979] text-white py-3 px-8 rounded-3xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block">
+          <EditableText
+            value={safeData.buttonText || 'Book Consultation'}
+            onChange={(value) => updateField('buttonText', value)}
+            tag="span"
+            placeholder="Book Consultation"
+          />
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import EditableText from '../common/EditableText';
 
 /**
@@ -39,17 +38,15 @@ const EditableAboutWhyChoose = ({ data, onDataChange }) => {
                 className="block"
               />
             </h2>
-            <Link to="/contact">
-              <button className="bg-[#EC7979] text-white text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full hover:bg-[#F05A5A] transition-colors font-semibold inline-flex items-center gap-2">
-                <EditableText
-                  value={safeData?.buttonText || ''}
-                  onChange={(value) => updateField('buttonText', value)}
-                  tag="span"
-                  className="inline"
-                />
-                <span>→</span>
-              </button>
-            </Link>
+            <div className="bg-[#EC7979] text-white text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full cursor-default font-semibold inline-flex items-center gap-2">
+              <EditableText
+                value={safeData?.buttonText || ''}
+                onChange={(value) => updateField('buttonText', value)}
+                tag="span"
+                className="inline"
+              />
+              <span>→</span>
+            </div>
           </div>
 
           {/* Right Column */}

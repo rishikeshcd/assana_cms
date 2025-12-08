@@ -2,7 +2,6 @@ import React from 'react';
 import { BsStars } from "react-icons/bs";
 import EditableText from '../common/EditableText';
 import EditableImage from '../common/EditableImage';
-import { Link } from 'react-router-dom';
 
 /**
  * EditableTryDemo - CMS version with editing capabilities
@@ -87,19 +86,14 @@ const EditableTryDemo = ({ data, onDataChange }) => {
               />
             </button>
 
-            <Link 
-              to="/bookNow"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              <button className="bg-[#EC7979] text-white text-sm sm:text-base md:text-lg p-3 sm:p-4 rounded-full px-6 sm:px-8 font-semibold hover:bg-[#d86565] transition-colors w-full sm:w-auto">
-                <EditableText
-                  value={data?.button2Text || 'Get Started'}
-                  onChange={(value) => updateField('button2Text', value)}
-                  tag="span"
-                  className="inline"
-                />
-              </button>
-            </Link>
+            <div className="bg-[#EC7979] text-white text-sm sm:text-base md:text-lg p-3 sm:p-4 rounded-full px-6 sm:px-8 font-semibold cursor-default w-full sm:w-auto inline-block">
+              <EditableText
+                value={data?.button2Text || 'Get Started'}
+                onChange={(value) => updateField('button2Text', value)}
+                tag="span"
+                className="inline"
+              />
+            </div>
           </div>
         </div>
       </div>

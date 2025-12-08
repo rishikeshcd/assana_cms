@@ -1,7 +1,6 @@
 import React from 'react';
 import EditableText from '../common/EditableText';
 import EditableImage from '../common/EditableImage';
-import { Link } from 'react-router-dom';
 
 /**
  * EditableAnalFistulaMain - CMS wrapper for AnalFistulaMain component
@@ -204,16 +203,14 @@ const EditableAnalFistulaMain = ({ data, onDataChange }) => {
             placeholder="Enter conclusion description..."
           />
         </p>
-        <Link to="/contact">
-          <button className="bg-[#EC7979] text-white py-3 px-8 rounded-4xl cursor-pointer hover:bg-[#d86565] transition-colors font-medium text-base md:text-lg font-[Raleway]">
-            <EditableText
-              value={conclusion.buttonText || 'Book a Consultation'}
-              onChange={(value) => updateConclusion('buttonText', value)}
-              tag="span"
-              placeholder="Book a Consultation"
-            />
-          </button>
-        </Link>
+        <div className="bg-[#EC7979] text-white py-3 px-8 rounded-4xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block">
+          <EditableText
+            value={conclusion.buttonText || 'Book a Consultation'}
+            onChange={(value) => updateConclusion('buttonText', value)}
+            tag="span"
+            placeholder="Book a Consultation"
+          />
+        </div>
       </div>
     </div>
   );

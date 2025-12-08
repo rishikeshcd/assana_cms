@@ -1,7 +1,6 @@
 import React from 'react';
 import EditableText from '../common/EditableText';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
-import { Link } from 'react-router-dom';
 
 /**
  * EditableWhyAssana - Contains both WhyAssana and WhyDifferent sections
@@ -48,16 +47,17 @@ const EditableWhyAssana = ({ data, onDataChange }) => {
           </div>
           <div className='flex justify-center lg:justify-end'>
             <div className="inline-flex items-center group mt-5 mb-5">
-              <Link onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to={'/bookNow'}>
-                <button className="bg-[#EC7979] text-sm sm:text-lg p-3 text-white rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 group-hover:pr-8 font-semibold group-hover:text-white 
-                  transition-all duration-300 ease-in-out group-hover:bg-[#F05A5A] flex items-center">
-                  Book a Consultation
-                  <IoIosArrowDroprightCircle 
-                    className="opacity-0 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 
-                    transition-all duration-300 ease-in-out text-3xl sm:text-4xl ml-3"
-                  />
-                </button>
-              </Link>
+              <div className="bg-[#EC7979] text-sm sm:text-lg p-3 text-white rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 font-semibold cursor-default flex items-center">
+                <EditableText
+                  value={data?.buttonText || 'Book a Consultation'}
+                  onChange={(value) => updateField('buttonText', value)}
+                  tag="span"
+                  className="inline"
+                />
+                <IoIosArrowDroprightCircle 
+                  className="text-3xl sm:text-4xl ml-3"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -95,16 +95,17 @@ const EditableWhyAssana = ({ data, onDataChange }) => {
           </div>
           <div className='flex justify-center lg:justify-start'>
             <div className="inline-flex items-center group mt-5">
-              <Link onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} to={'/bookNow'}>
-                <button className="bg-[#EC7979] text-white text-sm sm:text-lg p-3 rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 group-hover:pr-8 font-semibold group-hover:text-white 
-                  transition-all duration-300 ease-in-out group-hover:bg-[#F05A5A] flex items-center">
-                  Book a Consultation
-                  <IoIosArrowDroprightCircle 
-                    className="opacity-0 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 
-                    transition-all duration-300 ease-in-out text-3xl sm:text-4xl ml-3"
-                  />
-                </button>
-              </Link>
+              <div className="bg-[#EC7979] text-white text-sm sm:text-lg p-3 rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 font-semibold cursor-default flex items-center">
+                <EditableText
+                  value={data?.button2Text || 'Book a Consultation'}
+                  onChange={(value) => updateField('button2Text', value)}
+                  tag="span"
+                  className="inline"
+                />
+                <IoIosArrowDroprightCircle 
+                  className="text-3xl sm:text-4xl ml-3"
+                />
+              </div>
             </div>
           </div>
         </div>

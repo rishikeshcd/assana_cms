@@ -3,12 +3,12 @@ import EditableText from '../../common/EditableText';
 import EditableImage from '../../common/EditableImage';
 
 /**
- * EditableGutBrainAxisHero - CMS wrapper for GutBrainAxisHero component
+ * EditableColonHydrotherapyHero - CMS wrapper for ColonHydrotherapyHero component
  */
-const EditableGutBrainAxisHero = ({ data, onDataChange }) => {
+const EditableColonHydrotherapyHero = ({ data, onDataChange }) => {
   const safeData = data || {
     backgroundImage: '',
-    title: 'Gut Brain Axis & The Gut Microbiome',
+    title: 'Colon Hydrotherapy',
     description: '',
     buttonText: 'Book a Consultation',
   };
@@ -42,7 +42,7 @@ const EditableGutBrainAxisHero = ({ data, onDataChange }) => {
         <div className="'bg-white/20 backdrop-blur-xl px-10 py-5   rounded-2xl mb-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-[Raleway] mb-6  text-[#E64C4C]">
             <EditableText
-              value={safeData.title || 'Gut Brain Axis & The Gut Microbiome'}
+              value={safeData.title || 'Colon Hydrotherapy'}
               onChange={(value) => updateField('title', value)}
               tag="span"
               className="block"
@@ -73,5 +73,5 @@ const EditableGutBrainAxisHero = ({ data, onDataChange }) => {
   );
 };
 
-export default EditableGutBrainAxisHero;
+export default EditableColonHydrotherapyHero;
 

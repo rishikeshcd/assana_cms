@@ -12,7 +12,7 @@ const EditableSection = ({
   return (
     <div className="relative group">
       {/* Save Button - Sticky at top-right of viewport */}
-      <div className="sticky top-20 z-[9999] flex justify-end mb-4" style={{ marginTop: '-1rem' }}>
+      <div className="sticky  top-2 z-[9999] flex justify-end mb-4">
         <button
           onClick={onSave}
           disabled={saving}

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getSection, updateSection } from '../services/api';
 import EditableSection from '../components/common/EditableSection';
-import EditableGutBrainAxisHero from '../components/gut_wellness/gut_brain_axis/EditableGutBrainAxisHero';
-import EditableGutBrainAxisMain from '../components/gut_wellness/gut_brain_axis/EditableGutBrainAxisMain';
+import EditableColonHydrotherapyHero from '../components/gut_wellness/colon_hydrotherapy/EditableColonHydrotherapyHero';
+import EditableColonHydrotherapyMain from '../components/gut_wellness/colon_hydrotherapy/EditableColonHydrotherapyMain';
 
 /**
- * GutBrainAxisCMS - CMS version for Gut Brain Axis page sections
+ * ColonHydrotherapyCMS - CMS version for Colon Hydrotherapy page sections
  */
-const GutBrainAxisCMS = () => {
+const ColonHydrotherapyCMS = () => {
   const [sections, setSections] = useState({
     hero: null,
     main: null,
@@ -24,8 +24,8 @@ const GutBrainAxisCMS = () => {
   const loadAllSections = async () => {
     try {
       const results = await Promise.allSettled([
-        getSection('gut-wellness', 'gut-brain-axis/hero'),
-        getSection('gut-wellness', 'gut-brain-axis/main'),
+        getSection('gut-wellness', 'colon-hydrotherapy/hero'),
+        getSection('gut-wellness', 'colon-hydrotherapy/main'),
       ]);
 
       const [hero, main] = results.map((result) => {
@@ -47,7 +47,7 @@ const GutBrainAxisCMS = () => {
         hero:
           hero || {
             backgroundImage: '',
-            title: 'Gut Brain Axis & The Gut Microbiome',
+            title: 'Colon Hydrotherapy',
             description: '',
             buttonText: 'Book a Consultation',
           },
@@ -73,8 +73,8 @@ const GutBrainAxisCMS = () => {
     setSaving({ ...saving, [sectionKey]: true });
     try {
       const routeMap = {
-        hero: 'gut-brain-axis/hero',
-        main: 'gut-brain-axis/main',
+        hero: 'colon-hydrotherapy/hero',
+        main: 'colon-hydrotherapy/main',
       };
 
       const dataToSave = localData[sectionKey];
@@ -116,25 +116,25 @@ const GutBrainAxisCMS = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen">
-      {/* Gut Brain Axis Hero Section */}
+      {/* Colon Hydrotherapy Hero Section */}
       <EditableSection
         onSave={() => handleSave('hero')}
         saving={saving.hero}
-        sectionName="Gut Brain Axis Hero"
+        sectionName="Colon Hydrotherapy Hero"
       >
-        <EditableGutBrainAxisHero
-          data={localData.hero || { backgroundImage: '', title: 'Gut Brain Axis & The Gut Microbiome', description: '', buttonText: 'Book a Consultation' }}
+        <EditableColonHydrotherapyHero
+          data={localData.hero || { backgroundImage: '', title: 'Colon Hydrotherapy', description: '', buttonText: 'Book a Consultation' }}
           onDataChange={(newData) => updateLocalData('hero', newData)}
         />
       </EditableSection>
 
-      {/* Gut Brain Axis Main Section */}
+      {/* Colon Hydrotherapy Main Section */}
       <EditableSection
         onSave={() => handleSave('main')}
         saving={saving.main}
-        sectionName="Gut Brain Axis Main Content"
+        sectionName="Colon Hydrotherapy Main Content"
       >
-        <EditableGutBrainAxisMain
+        <EditableColonHydrotherapyMain
           data={localData.main || { sections: [], conclusion: { text: '', buttonText: 'Book a Consultation' } }}
           onDataChange={(newData) => updateLocalData('main', newData)}
           onSave={(newData) => handleSave('main', false)}
@@ -144,5 +144,5 @@ const GutBrainAxisCMS = () => {
   );
 };
 
-export default GutBrainAxisCMS;
+export default ColonHydrotherapyCMS;
 
