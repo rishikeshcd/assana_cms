@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CMSSidebar from './components/common/CMSSidebar';
 import ScrollToTop from './components/common/ScrollToTop';
@@ -18,6 +20,8 @@ import ProductCMS from './pages/ProductCMS';
 import CommonCMS from './pages/CommonCMS';
 import GutBrainAxisCMS from './pages/GutBrainAxisCMS';
 import ColonHydrotherapyCMS from './pages/ColonHydrotherapyCMS';
+import AssanaButtCheckCMS from './pages/AssanaButtCheckCMS';
+import NewMomProgramCMS from './pages/NewMomProgramCMS';
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -47,9 +51,22 @@ function App() {
             <Route path="/common" element={<CommonCMS />} />
             <Route path="/gut-brain-axis" element={<GutBrainAxisCMS />} />
             <Route path="/colon-hydrotherapy" element={<ColonHydrotherapyCMS />} />
+            <Route path="/assana-butt-check" element={<AssanaButtCheckCMS />} />
+            <Route path="/new-mom-program" element={<NewMomProgramCMS />} />
           </Routes>
         </main>
       </div>
+      <ToastContainer 
+        position="top-right"
+        autoClose={1000}
+        // hideProgressBar={false}
+        // newestOnTop={false}
+        // closeOnClick
+        // rtl={false}
+        // pauseOnFocusLoss
+        // draggable
+        // pauseOnHover
+      />
     </BrowserRouter>
   );
 }

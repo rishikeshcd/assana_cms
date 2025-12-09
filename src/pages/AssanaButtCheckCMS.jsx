@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getSection, updateSection } from '../services/api';
 import EditableSection from '../components/common/EditableSection';
-import EditableAnalFissureHero from '../components/anal_fissure/EditableAnalFissureHero';
-import EditableAnalFissureMain from '../components/anal_fissure/EditableAnalFissureMain';
-import { toast } from 'react-toastify';
+import EditableAssanaButtCheckHero from '../components/gut_wellness/assana_butt_check/EditableAssanaButtCheckHero';
+import EditableAssanaButtCheckMain from '../components/gut_wellness/assana_butt_check/EditableAssanaButtCheckMain';
 
 /**
- * AnalFissureCMS - CMS version for Anal Fissure page sections
+ * AssanaButtCheckCMS - CMS version for Assana Butt Check page sections
  */
-const AnalFissureCMS = () => {
+const AssanaButtCheckCMS = () => {
   const [sections, setSections] = useState({
     hero: null,
     main: null,
@@ -25,8 +24,8 @@ const AnalFissureCMS = () => {
   const loadAllSections = async () => {
     try {
       const results = await Promise.allSettled([
-        getSection('anal-fissure', 'hero'),
-        getSection('anal-fissure', 'main'),
+        getSection('gut-wellness', 'assana-butt-check/hero'),
+        getSection('gut-wellness', 'assana-butt-check/main'),
       ]);
 
       const [hero, main] = results.map((result) => {
@@ -48,18 +47,17 @@ const AnalFissureCMS = () => {
         hero:
           hero || {
             backgroundImage: '',
-            title: 'Anal Fissure',
-            description: '',
+            title: 'Assana Butt Check',
+            description: 'At Assana Colorectal & Gut Wellness Centre, we believe that prevention and early detection are key to maintaining optimal gut and colorectal health. That\'s why we\'ve designed the Assana Butt Check, a comprehensive master health check-up that evaluates the overall health of your gut and butt, helping you stay ahead of potential issues while improving your overall wellness.',
             buttonText: 'Book a Consultation',
           },
         main:
           main || {
-            sections: [],
-            conclusion: {
-              title: 'Conclusion',
-              description: '',
-              buttonText: 'Book a Consultation',
-            },
+            mainTitle: 'All you need to know..',
+            leftCards: [],
+            centerImage: '',
+            centerImageAlt: '',
+            rightCards: [],
           },
       });
 
@@ -75,26 +73,24 @@ const AnalFissureCMS = () => {
     setSaving({ ...saving, [sectionKey]: true });
     try {
       const routeMap = {
-        hero: 'hero',
-        main: 'main',
+        hero: 'assana-butt-check/hero',
+        main: 'assana-butt-check/main',
       };
 
       const dataToSave = localData[sectionKey];
-      const updated = await updateSection('anal-fissure', routeMap[sectionKey], dataToSave);
+      const updated = await updateSection('gut-wellness', routeMap[sectionKey], dataToSave);
 
       setSections({ ...sections, [sectionKey]: updated });
       setLocalData({ ...localData, [sectionKey]: { ...updated } });
 
       if (showAlert) {
-        toast.success('Saved successfully!');
-      //   alert('✅ Saved successfully!');
+        alert('✅ Saved successfully!');
       }
       return true;
     } catch (error) {
       console.error('Error saving:', error);
       if (showAlert) {
-        toast.error(' Failed to save. Please try again.');
-        // alert('❌ Failed to save. Please try again.');
+        alert('❌ Failed to save. Please try again.');
       }
       return false;
     } finally {
@@ -120,26 +116,26 @@ const AnalFissureCMS = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen">
-      {/* Anal Fissure Hero Section */}
+      {/* Assana Butt Check Hero Section */}
       <EditableSection
         onSave={() => handleSave('hero')}
         saving={saving.hero}
-        sectionName="Anal Fissure Hero"
+        sectionName="Assana Butt Check Hero"
       >
-        <EditableAnalFissureHero
-          data={localData.hero || { backgroundImage: '', title: 'Anal Fissure', description: '', buttonText: 'Book a Consultation' }}
+        <EditableAssanaButtCheckHero
+          data={localData.hero || { backgroundImage: '', title: 'Assana Butt Check', description: '', buttonText: 'Book a Consultation' }}
           onDataChange={(newData) => updateLocalData('hero', newData)}
         />
       </EditableSection>
 
-      {/* Anal Fissure Main Section */}
+      {/* Assana Butt Check Main Section */}
       <EditableSection
         onSave={() => handleSave('main')}
         saving={saving.main}
-        sectionName="Anal Fissure Main Content"
+        sectionName="Assana Butt Check Main Content"
       >
-        <EditableAnalFissureMain
-          data={localData.main || { sections: [], conclusion: { title: 'Conclusion', description: '', buttonText: 'Book a Consultation' } }}
+        <EditableAssanaButtCheckMain
+          data={localData.main || { mainTitle: 'All you need to know..', leftCards: [], centerImage: '', centerImageAlt: '', rightCards: [] }}
           onDataChange={(newData) => updateLocalData('main', newData)}
         />
       </EditableSection>
@@ -147,5 +143,5 @@ const AnalFissureCMS = () => {
   );
 };
 
-export default AnalFissureCMS;
+export default AssanaButtCheckCMS;
 

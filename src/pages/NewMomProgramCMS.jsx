@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getSection, updateSection } from '../services/api';
 import EditableSection from '../components/common/EditableSection';
-import EditableAnalFissureHero from '../components/anal_fissure/EditableAnalFissureHero';
-import EditableAnalFissureMain from '../components/anal_fissure/EditableAnalFissureMain';
-import { toast } from 'react-toastify';
+import EditableNewMomProgramHero from '../components/gut_wellness/new_mom_program/EditableNewMomProgramHero';
+import EditableNewMomProgramMain from '../components/gut_wellness/new_mom_program/EditableNewMomProgramMain';
 
 /**
- * AnalFissureCMS - CMS version for Anal Fissure page sections
+ * NewMomProgramCMS - CMS version for New Mom Program page sections
  */
-const AnalFissureCMS = () => {
+const NewMomProgramCMS = () => {
   const [sections, setSections] = useState({
     hero: null,
     main: null,
@@ -25,8 +24,8 @@ const AnalFissureCMS = () => {
   const loadAllSections = async () => {
     try {
       const results = await Promise.allSettled([
-        getSection('anal-fissure', 'hero'),
-        getSection('anal-fissure', 'main'),
+        getSection('gut-wellness', 'new-mom-program/hero'),
+        getSection('gut-wellness', 'new-mom-program/main'),
       ]);
 
       const [hero, main] = results.map((result) => {
@@ -48,18 +47,17 @@ const AnalFissureCMS = () => {
         hero:
           hero || {
             backgroundImage: '',
-            title: 'Anal Fissure',
+            title: 'New Mom Program',
             description: '',
             buttonText: 'Book a Consultation',
           },
         main:
           main || {
-            sections: [],
-            conclusion: {
-              title: 'Conclusion',
-              description: '',
-              buttonText: 'Book a Consultation',
-            },
+            mainTitle: 'All you need to know..',
+            leftCards: [],
+            centerImage: '',
+            centerImageAlt: '',
+            rightCards: [],
           },
       });
 
@@ -75,26 +73,24 @@ const AnalFissureCMS = () => {
     setSaving({ ...saving, [sectionKey]: true });
     try {
       const routeMap = {
-        hero: 'hero',
-        main: 'main',
+        hero: 'new-mom-program/hero',
+        main: 'new-mom-program/main',
       };
 
       const dataToSave = localData[sectionKey];
-      const updated = await updateSection('anal-fissure', routeMap[sectionKey], dataToSave);
+      const updated = await updateSection('gut-wellness', routeMap[sectionKey], dataToSave);
 
       setSections({ ...sections, [sectionKey]: updated });
       setLocalData({ ...localData, [sectionKey]: { ...updated } });
 
       if (showAlert) {
-        toast.success('Saved successfully!');
-      //   alert('✅ Saved successfully!');
+        alert('✅ Saved successfully!');
       }
       return true;
     } catch (error) {
       console.error('Error saving:', error);
       if (showAlert) {
-        toast.error(' Failed to save. Please try again.');
-        // alert('❌ Failed to save. Please try again.');
+        alert('❌ Failed to save. Please try again.');
       }
       return false;
     } finally {
@@ -120,26 +116,26 @@ const AnalFissureCMS = () => {
 
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen">
-      {/* Anal Fissure Hero Section */}
+      {/* New Mom Program Hero Section */}
       <EditableSection
         onSave={() => handleSave('hero')}
         saving={saving.hero}
-        sectionName="Anal Fissure Hero"
+        sectionName="New Mom Program Hero"
       >
-        <EditableAnalFissureHero
-          data={localData.hero || { backgroundImage: '', title: 'Anal Fissure', description: '', buttonText: 'Book a Consultation' }}
+        <EditableNewMomProgramHero
+          data={localData.hero || { backgroundImage: '', title: 'New Mom Program', description: '', buttonText: 'Book a Consultation' }}
           onDataChange={(newData) => updateLocalData('hero', newData)}
         />
       </EditableSection>
 
-      {/* Anal Fissure Main Section */}
+      {/* New Mom Program Main Section */}
       <EditableSection
         onSave={() => handleSave('main')}
         saving={saving.main}
-        sectionName="Anal Fissure Main Content"
+        sectionName="New Mom Program Main Content"
       >
-        <EditableAnalFissureMain
-          data={localData.main || { sections: [], conclusion: { title: 'Conclusion', description: '', buttonText: 'Book a Consultation' } }}
+        <EditableNewMomProgramMain
+          data={localData.main || { mainTitle: 'All you need to know..', leftCards: [], centerImage: '', centerImageAlt: '', rightCards: [] }}
           onDataChange={(newData) => updateLocalData('main', newData)}
         />
       </EditableSection>
@@ -147,5 +143,5 @@ const AnalFissureCMS = () => {
   );
 };
 
-export default AnalFissureCMS;
+export default NewMomProgramCMS;
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import assanaLogo from '../../assets/images/assanaLogo.png';
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import { FaLongArrowAltRight } from "react-icons/fa";
 
 /**
  * CMSSidebar - Sidebar navigation for CMS
@@ -47,6 +46,8 @@ const CMSSidebar = ({ onCollapseChange }) => {
       items: [
         { path: '/gut-brain-axis', label: 'Gut Brain Axis', icon: '🧠' },
         { path: '/colon-hydrotherapy', label: 'Colon Hydrotherapy', icon: '💧' },
+        { path: '/assana-butt-check', label: 'Assana Butt Check', icon: '🔍' },
+        { path: '/new-mom-program', label: 'New Mom Program', icon: '👶' },
         // Add more gut wellness pages here
       ]
     },
@@ -66,11 +67,11 @@ const CMSSidebar = ({ onCollapseChange }) => {
   };
 
   return (
-    <aside className={`bg-white border-r border-gray-200 fixed left-0 top-0 h-screen z-50 transition-all duration-300 ${
+    <aside className={`bg-white border-r border-gray-200 fixed left-0 top-0 h-screen z-50 transition-all duration-300 shadow-2xl ${
       isCollapsed ? 'w-16' : 'w-64'
     }`}>
       {/* Header */}
-      <div className="h-19 border-b border-gray-200 flex  items-center justify-between px-4 py-5 border border-red-50">
+      <div className="h-19 border-b border-gray-200 flex items-center justify-between px-4 py-5">
         {!isCollapsed && (
           <Link to="/home" className="flex flex-col flex-1 items-center justify-center  ">
             <img 
@@ -91,12 +92,18 @@ const CMSSidebar = ({ onCollapseChange }) => {
           </Link>
         )}
         <button
-          onClick={handleToggle}
-          className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-          title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-        >
-          {isCollapsed ? <FaLongArrowAltRight /> : <FaLongArrowAltLeft />}
-        </button>
+            onClick={handleToggle}
+            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            >
+            <div
+                className={`transition-transform ease-in-out duration-900  ${
+                isCollapsed ? "rotate-180" : "rotate-0"
+                }`}
+            >
+                <FaLongArrowAltLeft />
+            </div>
+            </button>
       </div>
 
       {/* Navigation */}
