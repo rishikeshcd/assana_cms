@@ -87,7 +87,7 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
         <div className="w-[100%] md:w-[80%] mx-auto rounded-2xl bg-[]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Colorectal Conditions */}
-            <div className="space-y-4 border-1 border-[#6d6c6c] w-[100%] p-5 rounded-2xl bg-[#00000052]">
+            <div className="space-y-4 border border-[#6d6c6c] w-[100%] p-5 rounded-2xl bg-[#00000052]">
               <h3 className="text-[#EB5466] text-xl font-bold font-[Raleway] mb-4">
                 <EditableText
                   value={data.colorectalConditionsTitle}
@@ -98,9 +98,9 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
               </h3>
               <ul className="grid grid-cols-2 gap-3">
                 {colorectalItems.map((item, index) => (
-                  <li key={index} className="flex items-center gap-2">
+                  <li key={index} className="flex items-center gap-2 group relative">
                     <span className="text-white text-sm">•</span>
-                    <span className="text-white text-sm font-[Raleway]">
+                    <span className="text-white text-sm font-[Raleway] flex-1">
                       <EditableText
                         value={item || ''}
                         onChange={(value) => {
@@ -111,6 +111,16 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
                         className="inline-block"
                       />
                     </span>
+                    <button
+                      onClick={() => {
+                        const updated = colorectalItems.filter((_, i) => i !== index);
+                        updateArrayField('colorectalConditionsItems', updated);
+                      }}
+                      className="text-red-400 hover:text-red-600 text-xs opacity-0 group-hover:opacity-100 transition-opacity ml-1"
+                      title="Remove item"
+                    >
+                      ×
+                    </button>
                   </li>
                 ))}
                 <li className="mt-2">
@@ -138,9 +148,9 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
               </h3>
               <ul className="grid grid-cols-2 gap-3">
                 {gutWellnessItems.map((item, index) => (
-                  <li key={index} className="flex items-center gap-2">
+                  <li key={index} className="flex items-center gap-2 group relative">
                     <span className="text-white text-sm">•</span>
-                    <span className="text-white text-sm font-[Raleway]">
+                    <span className="text-white text-sm font-[Raleway] flex-1">
                       <EditableText
                         value={item || ''}
                         onChange={(value) => {
@@ -151,6 +161,16 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
                         className="inline-block"
                       />
                     </span>
+                    <button
+                      onClick={() => {
+                        const updated = gutWellnessItems.filter((_, i) => i !== index);
+                        updateArrayField('gutWellnessItems', updated);
+                      }}
+                      className="text-red-400 hover:text-red-600 text-xs opacity-0 group-hover:opacity-100 transition-opacity ml-1"
+                      title="Remove item"
+                    >
+                      ×
+                    </button>
                   </li>
                 ))}
                 <li className="mt-2">
@@ -176,11 +196,11 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
                   className="block"
                 />
               </h3>
-              <ul className="flex flex-col gap-3">
+              <ul className="grid grid-cols-2 gap-3">
                 {educationItems.map((item, index) => (
-                  <li key={index} className="flex items-center gap-2">
+                  <li key={index} className="flex items-center gap-2 group relative">
                     <span className="text-white text-sm">•</span>
-                    <span className="text-white text-sm font-[Raleway]">
+                    <span className="text-white text-sm font-[Raleway] flex-1">
                       <EditableText
                         value={item || ''}
                         onChange={(value) => {
@@ -191,6 +211,16 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
                         className="inline-block"
                       />
                     </span>
+                    <button
+                      onClick={() => {
+                        const updated = educationItems.filter((_, i) => i !== index);
+                        updateArrayField('educationItems', updated);
+                      }}
+                      className="text-red-400 hover:text-red-600 text-xs opacity-0 group-hover:opacity-100 transition-opacity ml-1"
+                      title="Remove item"
+                    >
+                      ×
+                    </button>
                   </li>
                 ))}
                 <li className="mt-2">

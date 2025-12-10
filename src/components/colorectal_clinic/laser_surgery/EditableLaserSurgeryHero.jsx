@@ -1,15 +1,14 @@
 import React from 'react';
-import { COLORS } from '../../../constants/config';
 import EditableText from '../../common/EditableText';
 import EditableImage from '../../common/EditableImage';
 
 /**
- * EditableNewMomProgramHero - CMS wrapper for NewMomProgramHero component
+ * EditableLaserSurgeryHero - CMS wrapper for LaserSurgeryHero component
  */
-const EditableNewMomProgramHero = ({ data, onDataChange }) => {
+const EditableLaserSurgeryHero = ({ data, onDataChange }) => {
   const safeData = data || {
     backgroundImage: '',
-    title: 'New Mom Program',
+    title: 'Laser Surgery For Piles',
     description: '',
     buttonText: 'Book a Consultation',
   };
@@ -19,7 +18,7 @@ const EditableNewMomProgramHero = ({ data, onDataChange }) => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 lg:pt-24">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 lg:pt-24">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         {safeData.backgroundImage ? (
@@ -40,21 +39,22 @@ const EditableNewMomProgramHero = ({ data, onDataChange }) => {
           isBackground={true}
         />
       </div>
-        
-      <div className="relative z-10 max-w-[1600px] mx-auto px-4 lg:px-8 w-full">
-        <div className="w-full lg:w-[60%] my-8 lg:my-0 ">
-          {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-normal font-[Raleway] mb-6 text-[#EC7979]">
+
+      {/* Semi-transparent Overlay with Content */}
+     
+        <div className="relative mx-auto z-10 p-8 lg:p-12 text-center flex flex-col items-center justify-center max-w-[70%] w-fit ">
+          {/* Title - White Text */}
+          <h1 className="text-4xl md:text-5xl lg:w-[90%] lg:text-6xl font-normal font-[Raleway] mb-6  p-6 text-white  bg-gray-400/50 backdrop-blur-sm rounded-lg ">
             <EditableText
               value={safeData.title || ''}
               onChange={(value) => updateField('title', value)}
               tag="span"
-              placeholder="New Mom Program"
+              placeholder="Laser Surgery For Piles"
             />
           </h1>
 
-          {/* Description Paragraph */}
-          <p className="text-base md:text-lg lg:text-xl font-[Raleway] mb-8 leading-loose tracking-wide text-black">
+          {/* Description Paragraph - Red Text */}
+          <p className=" md:text-lg lg:text-[30px] font-[Raleway]  mb-8 leading-relaxed text-[#E64C4C]  font-medium w-[90%] m-auto">
             <EditableText
               value={safeData.description || ''}
               onChange={(value) => updateField('description', value)}
@@ -65,10 +65,7 @@ const EditableNewMomProgramHero = ({ data, onDataChange }) => {
           </p>
 
           {/* Book Consultation Button - Static in CMS */}
-          <div 
-            style={{ backgroundColor: COLORS.BUTTON_BG }}
-            className="text-white py-3 px-8 rounded-3xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block"
-          >
+          <div className="bg-[#E64C4C] text-white py-3 px-8 rounded-3xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block">
             <EditableText
               value={safeData.buttonText || 'Book a Consultation'}
               onChange={(value) => updateField('buttonText', value)}
@@ -77,10 +74,11 @@ const EditableNewMomProgramHero = ({ data, onDataChange }) => {
             />
           </div>
         </div>
-      </div>
+      
     </section>
   );
 };
 
-export default EditableNewMomProgramHero;
+export default EditableLaserSurgeryHero;
+
 

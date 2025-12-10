@@ -19,10 +19,14 @@ export const updateSection = async (page, section, data) => {
   return response.data;
 };
 
-export const uploadImage = async (file) => {
+export const uploadImage = async (file, options = {}) => {
   const formData = new FormData();
   formData.append('file', file);
-  const response = await api.post('/uploads', formData, {
+  
+  // Add temp flag as query parameter (defaults to true for temporary uploads)
+  const isTemp = options.temp !== false; // Default to true unless explicitly false
+  
+  const response = await api.post(`/uploads${isTemp ? '?temp=true' : ''}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },

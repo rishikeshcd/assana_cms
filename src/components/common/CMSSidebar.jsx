@@ -48,6 +48,8 @@ const CMSSidebar = ({ onCollapseChange }) => {
         { path: '/colon-hydrotherapy', label: 'Colon Hydrotherapy', icon: '💧' },
         { path: '/assana-butt-check', label: 'Assana Butt Check', icon: '🔍' },
         { path: '/new-mom-program', label: 'New Mom Program', icon: '👶' },
+        { path: '/menopause-program', label: 'Menopause Program', icon: '🌺' },
+        { path: '/senior-citizens-programme', label: 'Senior Citizens Programme', icon: '👴' },
         // Add more gut wellness pages here
       ]
     },
