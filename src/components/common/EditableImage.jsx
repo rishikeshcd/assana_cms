@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { uploadImage } from '../../services/api';
+import { uploadImageDirect } from '../../services/api';
 
 /**
  * EditableImage - Component for editing background images or regular images
@@ -72,8 +72,12 @@ const EditableImage = ({
     setUploading(true);
 
     try {
-      // Upload to Cloudinary in the background
-      const result = await uploadImage(file);
+      // Upload directly to Cloudinary (temp-uploads folder)
+      const result = await uploadImageDirect(file, {
+        onProgress: (percent) => {
+          // Progress is already logged in the upload function
+        },
+      });
       
       // Clean up local preview URL
       if (localUrlRef.current) {
@@ -81,11 +85,12 @@ const EditableImage = ({
         localUrlRef.current = null;
       }
       
-      // Replace with Cloudinary URL
+      // Replace with Cloudinary URL (still in temp folder, will be moved on save)
       setLocalPreviewUrl(null);
       setPreviewUrl(result.url);
       
-      // Update parent with final Cloudinary URL
+      // Update parent with Cloudinary URL (temp folder)
+      // Backend will move it to permanent folder when saving
       if (onChange) {
         onChange(result.url);
       }
