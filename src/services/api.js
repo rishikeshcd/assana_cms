@@ -20,24 +20,27 @@ export const updateSection = async (page, section, data) => {
 };
 
 export const uploadImage = async (file, options = {}) => {
+  const isTemp = options.temp !== false; // Default to true unless explicitly false
+  
   const formData = new FormData();
   formData.append('file', file);
-  
-  // Add temp flag as query parameter (defaults to true for temporary uploads)
-  const isTemp = options.temp !== false; // Default to true unless explicitly false
   
   const response = await api.post(`/uploads${isTemp ? '?temp=true' : ''}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
-    timeout: 120000, // 2 minutes timeout for image uploads (larger files need more time)
+    timeout: 120000, // 2 minutes timeout
     onUploadProgress: (progressEvent) => {
       if (progressEvent.total) {
         const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
         console.log(`Upload progress: ${percentCompleted}%`);
+        if (options.onProgress) {
+          options.onProgress(percentCompleted);
+        }
       }
     },
   });
+  
   return response.data;
 };
 
