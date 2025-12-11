@@ -20,8 +20,8 @@ export const updateSection = async (page, section, data) => {
 };
 
 /**
- * Upload image directly to Cloudinary from client (bypasses backend)
- * Uploads to temp-uploads folder, then backend moves to permanent folder on save
+ * Upload image directly to Cloudinary from client (SIMPLE & RELIABLE)
+ * Uploads directly to permanent folder - no temp folder, no moving needed
  */
 export const uploadImageDirect = async (file, options = {}) => {
   try {
@@ -31,7 +31,7 @@ export const uploadImageDirect = async (file, options = {}) => {
     
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('folder', folder || 'temp-uploads');
+    formData.append('folder', folder || 'assana-uploads'); // Upload directly to permanent folder
     
     // Use unsigned upload if preset is available (simpler)
     if (uploadPreset) {
@@ -69,7 +69,7 @@ export const uploadImageDirect = async (file, options = {}) => {
       originalName: file.name,
       size: response.data.bytes,
       storage: 'cloudinary',
-      isTemp: true, // Always temp for direct uploads
+      isTemp: false, // Directly in permanent folder
     };
   } catch (error) {
     console.error('Direct Cloudinary upload error:', error);
