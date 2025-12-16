@@ -24,6 +24,8 @@ import AssanaButtCheckCMS from './pages/gut_wellness/AssanaButtCheckCMS';
 import NewMomProgramCMS from './pages/gut_wellness/NewMomProgramCMS';
 import MenopauseProgramCMS from './pages/gut_wellness/MenopauseProgramCMS';
 import SeniorCitizensProgrammeCMS from './pages/gut_wellness/SeniorCitizensProgrammeCMS';
+import ContactMainCMS from './pages/ContactMainCMS';
+import WellnessProgrammesCMS from './pages/gut_wellness/WellnessProgrammesCMS';
 
 function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -40,6 +42,9 @@ function App() {
             <Route path="/" element={<HomeCMS />} />
             <Route path="/home" element={<HomeCMS />} />
             <Route path="/about" element={<AboutCMS />} />
+            <Route path="/contact" element ={<ContactMainCMS /> } />
+
+
             <Route path="/anal-fistula" element={<AnalFistulaCMS />} />
             <Route path="/piles" element={<PilesCMS />} />
             <Route path="/pelvic-floor" element={<PelvicFloorCMS />} />
@@ -54,6 +59,7 @@ function App() {
             <Route path="/gut-brain-axis" element={<GutBrainAxisCMS />} />
             <Route path="/colon-hydrotherapy" element={<ColonHydrotherapyCMS />} />
             <Route path="/assana-butt-check" element={<AssanaButtCheckCMS />} />
+            <Route path="/wellness-programmes" element={<WellnessProgrammesCMS />} />
             <Route path="/new-mom-program" element={<NewMomProgramCMS />} />
             <Route path="/menopause-program" element={<MenopauseProgramCMS />} />
             <Route path="/senior-citizens-programme" element={<SeniorCitizensProgrammeCMS />} />

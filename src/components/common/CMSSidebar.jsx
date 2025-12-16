@@ -25,6 +25,7 @@ const CMSSidebar = ({ onCollapseChange }) => {
         { path: '/home', label: 'Home', icon: '🏠' },
         { path: '/about', label: 'About', icon: '📄' },
         { path: '/product', label: 'Product', icon: '🛍️' },
+        { path: '/contact', label: 'Contact' , icon: '📞'}
       ]
     },
     { 
@@ -47,6 +48,8 @@ const CMSSidebar = ({ onCollapseChange }) => {
         { path: '/gut-brain-axis', label: 'Gut Brain Axis', icon: '🧠' },
         { path: '/colon-hydrotherapy', label: 'Colon Hydrotherapy', icon: '💧' },
         { path: '/assana-butt-check', label: 'Assana Butt Check', icon: '🔍' },
+        { path: '/wellness-programmes', label: 'Wellness Programms', icon: '🔍' },
+        
         { path: '/new-mom-program', label: 'New Mom Program', icon: '👶' },
         { path: '/menopause-program', label: 'Menopause Program', icon: '🌺' },
         { path: '/senior-citizens-programme', label: 'Senior Citizens Programme', icon: '👴' },
