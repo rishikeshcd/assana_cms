@@ -1,6 +1,7 @@
 import React from 'react';
 import EditableText from '../common/EditableText';
 import EditableImage from '../common/EditableImage';
+import { COLORS } from '../../constants/config';
 
 /**
  * EditableProductMain - CMS wrapper for ProductMain component
@@ -140,7 +141,7 @@ const EditableProductMain = ({ data, onDataChange }) => {
                     </div>
 
                     {/* View Details Button */}
-                    <button className="bg-[#EC7979] text-white py-3 px-8 rounded-lg cursor-pointer hover:bg-[#d86565] transition-colors font-medium text-base md:text-lg font-[Raleway]">
+                    <button className="text-white py-3 px-8 rounded-lg cursor-pointer transition-colors font-medium text-base md:text-lg font-[Raleway] hover:opacity-90" style={{ backgroundColor: COLORS.BUTTON_BG }}>
                       View Details
                     </button>
                   </div>

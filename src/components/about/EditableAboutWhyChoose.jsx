@@ -1,5 +1,6 @@
 import React from 'react';
 import EditableText from '../common/EditableText';
+import { COLORS } from '../../constants/config';
 
 /**
  * EditableAboutWhyChoose - CMS wrapper for AboutWhyChoose component
@@ -38,7 +39,7 @@ const EditableAboutWhyChoose = ({ data, onDataChange }) => {
                 className="block"
               />
             </h2>
-            <div className="bg-[#EC7979] text-white text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full cursor-default font-semibold inline-flex items-center gap-2">
+            <div className="text-white text-sm sm:text-base lg:text-lg px-6 py-3 rounded-full cursor-default font-semibold inline-flex items-center gap-2 transition-colors hover:opacity-90" style={{ backgroundColor: COLORS.BUTTON_BG }}>
               <EditableText
                 value={safeData?.buttonText || ''}
                 onChange={(value) => updateField('buttonText', value)}

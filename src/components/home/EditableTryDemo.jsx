@@ -2,6 +2,7 @@ import React from 'react';
 import { BsStars } from "react-icons/bs";
 import EditableText from '../common/EditableText';
 import EditableImage from '../common/EditableImage';
+import { COLORS } from '../../constants/config';
 
 /**
  * EditableTryDemo - CMS version with editing capabilities
@@ -75,7 +76,8 @@ const EditableTryDemo = ({ data, onDataChange }) => {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
             <button 
               onClick={toggleChatBot} 
-              className="bg-[#EC7979] text-white text-sm sm:text-base md:text-lg p-3 sm:p-4 rounded-full px-6 sm:px-8 font-semibold hover:bg-[#d86565] transition-colors flex items-center justify-center gap-2 w-full sm:w-auto"
+              className="text-white text-sm sm:text-base md:text-lg p-3 sm:p-4 rounded-full px-6 sm:px-8 font-semibold transition-colors flex items-center justify-center gap-2 w-full sm:w-auto hover:opacity-90"
+              style={{ backgroundColor: COLORS.BUTTON_BG }}
             >
               <BsStars className='w-5 h-5' />
               <EditableText
@@ -86,7 +88,7 @@ const EditableTryDemo = ({ data, onDataChange }) => {
               />
             </button>
 
-            <div className="bg-[#EC7979] text-white text-sm sm:text-base md:text-lg p-3 sm:p-4 rounded-full px-6 sm:px-8 font-semibold cursor-default w-full sm:w-auto inline-block">
+            <div className="text-white text-sm sm:text-base md:text-lg p-3 sm:p-4 rounded-full px-6 sm:px-8 font-semibold cursor-default w-full sm:w-auto inline-block transition-colors hover:opacity-90" style={{ backgroundColor: COLORS.BUTTON_BG }}>
               <EditableText
                 value={data?.button2Text || 'Get Started'}
                 onChange={(value) => updateField('button2Text', value)}

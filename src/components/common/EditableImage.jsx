@@ -154,8 +154,8 @@ const EditableImage = ({
       {/* Edit overlay button - Always visible for background images, hover for regular images */}
       <div
         onClick={handleImageClick}
-        className={`absolute top-0 left-0 bg-blue-500 text-white px-2 py-1 rounded-lg cursor-pointer hover:bg-blue-600 transition-colors z-50 flex items-center gap-2 shadow-lg pointer-events-auto text-xs ${
-          isBackground ? 'opacity-90 hover:opacity-100' : 'opacity-0 group-hover:opacity-100'
+        className={`absolute bg-blue-500 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-blue-600 transition-colors flex items-center gap-2 shadow-lg pointer-events-auto text-xs ${
+          isBackground ? 'opacity-90 hover:opacity-100 z-100 top-0 left-0' : 'opacity-0 group-hover:opacity-100 z-50 top-0 left-0'
         }`}
       >
         {uploading ? (

@@ -16,7 +16,7 @@ const EditableSection = ({
         <button
           onClick={onSave}
           disabled={saving}
-          className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg shadow-2xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-lg"
+          className="bg-green-500 hover:bg-green-600 text-white text-sm md:text-base px-6 py-3 rounded-lg shadow-2xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-lg"
         >
           {saving ? (
             <>
@@ -26,6 +26,7 @@ const EditableSection = ({
           ) : (
             <>
               <span>💾</span>
+              {/* <span>Save {sectionName}</span> */}
               <span>Save {sectionName}</span>
             </>
           )}

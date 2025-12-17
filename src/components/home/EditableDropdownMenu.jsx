@@ -88,7 +88,7 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Colorectal Conditions */}
             <div className="space-y-4 border border-[#6d6c6c] w-[100%] p-5 rounded-2xl bg-[#00000052]">
-              <h3 className="text-[#EB5466] text-xl font-bold font-[Raleway] mb-4">
+              <h3 className="text-[#FF4900] text-xl font-bold font-[Raleway] mb-4">
                 <EditableText
                   value={data.colorectalConditionsTitle}
                   onChange={(value) => updateField('colorectalConditionsTitle', value)}
@@ -138,7 +138,7 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
 
             {/* Gut Wellness */}
             <div className="space-y-4 border-1 border-[#6d6c6c] p-5 rounded-2xl bg-[#00000052]">
-              <h3 className="text-[#EB5466] text-xl font-bold font-[Raleway] mb-4">
+              <h3 className="text-[#FF4900] text-xl font-bold font-[Raleway] mb-4">
                 <EditableText
                   value={data.gutWellnessTitle}
                   onChange={(value) => updateField('gutWellnessTitle', value)}
@@ -188,7 +188,7 @@ const EditableDropdownMenu = ({ data, onDataChange }) => {
 
             {/* Education */}
             <div className="space-y-4 border-1 border-[#6d6c6c] p-5 rounded-2xl bg-[#00000052]">
-              <h3 className="text-[#EB5466] text-xl font-bold font-[Raleway] mb-4">
+              <h3 className="text-[#FF4900] text-xl font-bold font-[Raleway] mb-4"> 
                 <EditableText
                   value={data.educationTitle}
                   onChange={(value) => updateField('educationTitle', value)}

@@ -1,6 +1,7 @@
 import React from 'react';
 import EditableText from '../../common/EditableText';
 import EditableImage from '../../common/EditableImage';
+import { COLORS } from '../../../constants/config';
 
 /**
  * EditablePilesMain - CMS wrapper for PilesMain component
@@ -204,7 +205,7 @@ const EditablePilesMain = ({ data, onDataChange }) => {
             placeholder="Enter conclusion description..."
           />
         </p>
-        <div className="bg-[#EC7979] text-white py-3 px-8 rounded-4xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block">
+        <div className="text-white py-3 px-8 rounded-4xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block transition-colors hover:opacity-90" style={{ backgroundColor: COLORS.BUTTON_BG }}>
           <EditableText
             value={conclusion.buttonText || 'Book a Consultation'}
             onChange={(value) => updateConclusion('buttonText', value)}

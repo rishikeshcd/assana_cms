@@ -1,6 +1,7 @@
 import React from 'react';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import EditableText from '../common/EditableText';
+import { COLORS } from '../../constants/config';
 
 /**
  * EditableAboutMission - CMS wrapper for AboutMission component with editing capabilities
@@ -50,7 +51,7 @@ const EditableAboutMission = ({ data, onDataChange }) => {
         </div>
         <div className='flex justify-center lg:justify-end'>
           <div className="inline-flex items-center group mt-5">
-            <div className="bg-[#EC7979] text-sm sm:text-lg p-3 rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 font-semibold cursor-default flex items-center">
+            <div className="text-sm sm:text-lg p-3 rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 font-semibold cursor-default flex items-center transition-colors hover:opacity-90" style={{ backgroundColor: COLORS.BUTTON_BG, color: 'white' }}>
               <EditableText
                 value={safeData?.buttonText || 'Book a discreet Consultation'}
                 onChange={(value) => updateField('buttonText', value)}

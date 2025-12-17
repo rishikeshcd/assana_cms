@@ -1,5 +1,6 @@
 import React from 'react';
 import EditableText from '../common/EditableText';
+import { COLORS } from '../../constants/config';
 
 /**
  * EditableServices - CMS version with all accordion items expanded for easy editing
@@ -116,8 +117,8 @@ const EditableServices = ({ data, onDataChange }) => {
           {/* Get Started Button - Same as public site */}
           <div className="flex justify-center items-center mt-10">
             <button
-              className="bg-[#EC7979] text-sm sm:text-lg p-3 rounded-4xl px-12 font-semibold hover:text-white 
-                hover:bg-[#F05A5A] flex items-center"
+              className="text-sm sm:text-lg p-3 rounded-4xl px-12 font-semibold flex items-center transition-colors hover:opacity-90"
+              style={{ backgroundColor: COLORS.BUTTON_BG, color: 'white' }}
             >
               Get Started
             </button>

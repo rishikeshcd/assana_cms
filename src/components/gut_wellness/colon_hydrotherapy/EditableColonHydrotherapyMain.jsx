@@ -1,6 +1,7 @@
 import React from 'react';
 import EditableText from '../../common/EditableText';
 import EditableImage from '../../common/EditableImage';
+import { COLORS } from '../../../constants/config';
 
 /**
  * EditableColonHydrotherapyMain - CMS wrapper for ColonHydrotherapyMain component
@@ -207,7 +208,8 @@ const EditableColonHydrotherapyMain = ({ data, onDataChange, onSave }) => {
               value={safeData.conclusion?.buttonText || 'Book a Consultation'}
               onChange={(value) => onDataChange({ ...safeData, conclusion: { ...safeData.conclusion, buttonText: value } })}
               tag="span"
-              className="inline-block bg-[#EC7979] text-white py-3 px-8 rounded-full font-medium text-base md:text-lg font-[Raleway]"
+              className="inline-block text-white py-3 px-8 rounded-full font-medium text-base md:text-lg font-[Raleway] transition-colors hover:opacity-90"
+              style={{ backgroundColor: COLORS.BUTTON_BG }}
               placeholder="Button Text"
             />
           </div>

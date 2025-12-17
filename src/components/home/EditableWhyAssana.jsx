@@ -1,6 +1,7 @@
 import React from 'react';
 import EditableText from '../common/EditableText';
 import { IoIosArrowDroprightCircle } from "react-icons/io";
+import { COLORS } from '../../constants/config';
 
 /**
  * EditableWhyAssana - Contains both WhyAssana and WhyDifferent sections
@@ -47,7 +48,7 @@ const EditableWhyAssana = ({ data, onDataChange }) => {
           </div>
           <div className='flex justify-center lg:justify-end'>
             <div className="inline-flex items-center group mt-5 mb-5">
-              <div className="bg-[#EC7979] text-sm sm:text-lg p-3 text-white rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 font-semibold cursor-default flex items-center">
+              <div className="text-sm sm:text-lg p-3 text-white rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 font-semibold cursor-default flex items-center transition-colors hover:opacity-90" style={{ backgroundColor: COLORS.BUTTON_BG }}>
                 <EditableText
                   value={data?.buttonText || 'Book a Consultation'}
                   onChange={(value) => updateField('buttonText', value)}
@@ -95,7 +96,7 @@ const EditableWhyAssana = ({ data, onDataChange }) => {
           </div>
           <div className='flex justify-center lg:justify-start'>
             <div className="inline-flex items-center group mt-5">
-              <div className="bg-[#EC7979] text-white text-sm sm:text-lg p-3 rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 font-semibold cursor-default flex items-center">
+              <div className="text-white text-sm sm:text-lg p-3 rounded-4xl pr-0 sm:pr-3 px-8 sm:px-12 font-semibold cursor-default flex items-center transition-colors hover:opacity-90" style={{ backgroundColor: COLORS.BUTTON_BG }}>
                 <EditableText
                   value={data?.button2Text || 'Book a Consultation'}
                   onChange={(value) => updateField('button2Text', value)}

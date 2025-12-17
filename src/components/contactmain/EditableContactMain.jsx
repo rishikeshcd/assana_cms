@@ -1,6 +1,7 @@
 import React from 'react'
 import EditableImage from '../common/EditableImage';
 import EditableText from '../common/EditableText';
+import { COLORS } from '../../constants/config';
 
 const EditableContactMain  = ({ data, onDataChange }) => {
     const safeData = data || {
@@ -63,7 +64,7 @@ const EditableContactMain  = ({ data, onDataChange }) => {
               <textarea id="message" name="message" 
              placeholder='Message' className='w-full p-2 border border-gray-300 rounded-md' />
             </div>
-            <button type='submit' className='bg-[#E64C4C] text-white p-2 px-8 rounded-md w-fit mx-auto'>Submit</button>
+            <button type='submit' className='text-white p-2 px-8 rounded-md w-fit mx-auto transition-colors hover:opacity-90' style={{ backgroundColor: COLORS.BUTTON_BG }}>Submit</button>
           </form>
         </div>
         <div className="p-6 md:p-8 text-white space-y-4">

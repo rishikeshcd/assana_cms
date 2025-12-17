@@ -67,7 +67,7 @@ const EditableBanner = ({ data, onDataChange }) => {
             />
           </h1>
 
-          <h2 className="text-xl md:text-2xl mt-3 lg:text-3xl font-semibold font-[Raleway] mb-6 text-[#EB5466]">
+          <h2 className="text-xl md:text-2xl mt-3 lg:text-3xl font-semibold font-[Raleway] mb-6 text-[#FF4900]">
             <EditableText
               value={data.subtitle}
               onChange={(value) => updateField('subtitle', value)}
@@ -85,7 +85,7 @@ const EditableBanner = ({ data, onDataChange }) => {
             />
           </p>
 
-          <h3 className="text-xl md:text-2xl font-semibold font-[Raleway] mb-6 text-[#EB5466]">
+          <h3 className="text-xl md:text-2xl font-semibold font-[Raleway] mb-6 text-[#FF4900]">
             <EditableText
               value={data.experienceSectionTitle}
               onChange={(value) => updateField('experienceSectionTitle', value)}

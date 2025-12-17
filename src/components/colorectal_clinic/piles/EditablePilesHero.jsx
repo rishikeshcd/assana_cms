@@ -1,6 +1,7 @@
 import React from 'react';
 import EditableText from '../../common/EditableText';
 import EditableImage from '../../common/EditableImage';
+import { COLORS } from '../../../constants/config';
 
 /**
  * EditablePilesHero - CMS wrapper for PilesHero component
@@ -20,7 +21,7 @@ const EditablePilesHero = ({ data, onDataChange }) => {
   return (
     <section className="relative min-h-screen flex items-center justify-start pt-20 lg:pt-24">
       {/* Background Image */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 ">
         {safeData.backgroundImage && (
           <img
             src={safeData.backgroundImage}
@@ -59,7 +60,7 @@ const EditablePilesHero = ({ data, onDataChange }) => {
         </p>
 
         {/* Book Consultation Button - Static in CMS */}
-        <div className="bg-[#EC7979] text-white py-3 px-8 rounded-3xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block">
+        <div className="text-white py-3 px-8 rounded-3xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block transition-colors hover:opacity-90" style={{ backgroundColor: COLORS.BUTTON_BG }}>
           <EditableText
             value={safeData.buttonText || 'Book a Consultation'}
             onChange={(value) => updateField('buttonText', value)}

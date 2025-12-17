@@ -69,7 +69,7 @@ const EditableAnalWoundCareContent = ({ data, onDataChange }) => {
 
   return (
     <div className="bg-[#0000000A] py-12 md:py-16 lg:py-20">
-      <div className="max-w-[1600px] mx-auto px-6 md:px-8 lg:px-16">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-8 lg:px-16 ">
         {/* Main Title */}
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-[Raleway] font-semibold text-center mb-12 md:mb-16 text-black/90">
           <EditableText

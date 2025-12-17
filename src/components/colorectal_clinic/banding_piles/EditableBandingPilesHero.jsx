@@ -1,6 +1,7 @@
 import React from 'react';
 import EditableText from '../../common/EditableText';
 import EditableImage from '../../common/EditableImage';
+import { COLORS } from '../../../constants/config';
 
 /**
  * EditableBandingPilesHero - CMS wrapper for BandingPilesHero component
@@ -65,7 +66,7 @@ const EditableBandingPilesHero = ({ data, onDataChange }) => {
           </p>
 
           {/* Book Consultation Button - Static in CMS */}
-          <div className="bg-[#E64C4C] text-white py-3 px-8 rounded-3xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block">
+          <div className="text-white py-3 px-8 rounded-3xl cursor-default font-medium text-base md:text-lg font-[Raleway] inline-block transition-colors hover:opacity-90" style={{ backgroundColor: COLORS.BUTTON_BG }}>
             <EditableText
               value={safeData.buttonText || 'Book a Consultation'}
               onChange={(value) => updateField('buttonText', value)}
